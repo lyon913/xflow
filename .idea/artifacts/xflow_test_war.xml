@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="xflow-test:war">
-    <output-path>$PROJECT_DIR$/xflow-test/target</output-path>
-    <root id="archive" name="xflow-test.war">
-      <element id="artifact" artifact-name="xflow-test:war exploded" />
-    </root>
-  </artifact>
-</component>
