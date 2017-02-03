@@ -8,6 +8,7 @@
     <artifactId>xflow</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
     <modules>
         <module>xflow-core</module>
         <module>xflow-test</module>
@@ -15,21 +16,32 @@
 
     <properties>
         <java.version>1.6</java.version>
+        <spring-platform.version>Athens-SR3</spring-platform.version>
+        <mybatis.version>3.4.1</mybatis.version>
+        <junit.version>4.12</junit.version>
     </properties>
-<dependencyManagement>
-    <dependencies>
 
-        <dependency>
-            <groupId>io.spring.platform</groupId>
-            <artifactId>platform-bom</artifactId>
-            <version>Athens-SR3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>3.4.1</version>
-        </dependency>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.spring.platform</groupId>
+                <artifactId>platform-bom</artifactId>
+                <version>${spring-platform.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${mybatis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
 
-    </dependencies>
-</dependencyManagement>
+        </dependencies>
+    </dependencyManagement>
 </project>
