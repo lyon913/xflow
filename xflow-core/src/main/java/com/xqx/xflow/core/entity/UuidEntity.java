@@ -1,4 +1,4 @@
-package com.xqx.xflow.core.model;
+package com.xqx.xflow.core.entity;
 
 import java.util.UUID;
 
