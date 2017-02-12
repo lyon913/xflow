@@ -1,14 +1,12 @@
-package com.xqx.xflow.core.db;
+package com.xqx.xflow.core.impl.db;
 
 import org.apache.ibatis.session.SqlSession;
-
-import java.util.ArrayList;
 
 /**
  * Created by Lyon on 2017/2/10.
  */
 public class DbSqlSession {
-    protected  IdGenerator idGenerator;
+    protected IdGenerator idGenerator;
     protected SqlSession sqlSession;
 
     public void insert(PersistentObject entity) {

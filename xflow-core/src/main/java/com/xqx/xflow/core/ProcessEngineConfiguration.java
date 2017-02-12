@@ -1,6 +1,8 @@
 package com.xqx.xflow.core;
 
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy;
 import org.springframework.transaction.PlatformTransactionManager;
 
@@ -9,23 +11,19 @@ import javax.sql.DataSource;
 /**
  * Created by Lyon on 2017/2/9.
  */
-public class AbstractProcessEngineConfiguration {
-
+public abstract class ProcessEngineConfiguration {
 
     protected DataSource dataSource;
 
-    protected PlatformTransactionManager transactionManager;
-
     protected boolean isTransactionManaged;
-
-
 
     protected SqlSessionFactory sqlSessionFactory;
 
-    public AbstractProcessEngineConfiguration() {
+    protected RepositoryService repositoryService;
 
-    }
+    protected RuntimeService runtimeService;
 
+    protected TaskService taskService;
 
     public DataSource getDataSource() {
         return dataSource;
@@ -33,14 +31,6 @@ public class AbstractProcessEngineConfiguration {
 
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
-    }
-
-    public PlatformTransactionManager getTransactionManager() {
-        return transactionManager;
-    }
-
-    public void setTransactionManager(PlatformTransactionManager transactionManager) {
-        this.transactionManager = transactionManager;
     }
 
     public boolean isTransactionManaged() {
@@ -58,4 +48,31 @@ public class AbstractProcessEngineConfiguration {
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         this.sqlSessionFactory = sqlSessionFactory;
     }
+
+    public RepositoryService getRepositoryService() {
+        return repositoryService;
+    }
+
+    public void setRepositoryService(RepositoryService repositoryService) {
+        this.repositoryService = repositoryService;
+    }
+
+    public RuntimeService getRuntimeService() {
+        return runtimeService;
+    }
+
+    public void setRuntimeService(RuntimeService runtimeService) {
+        this.runtimeService = runtimeService;
+    }
+
+    public TaskService getTaskService() {
+        return taskService;
+    }
+
+    public void setTaskService(TaskService taskService) {
+        this.taskService = taskService;
+    }
+
+    public abstract ProcessEngine buildProcessEngine();
+
 }

@@ -5,10 +5,10 @@ package com.xqx.xflow.core;
  */
 public interface ProcessEngine {
 
-        RepositoryService getRepositoryService();
+    RepositoryService getRepositoryService();
 
-        RuntimeService getRuntimeService();
+    RuntimeService getRuntimeService();
 
-        TaskService getTaskService();
+    TaskService getTaskService();
 
 }
