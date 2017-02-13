@@ -7,14 +7,14 @@ import com.xqx.xflow.core.*;
  */
 public class ProcessEngineImpl implements ProcessEngine {
 
-    protected ProcessEngineConfiguration configuration;
+    protected ProcessEngineConfigurationImpl processEngineConfiguration;
 
     protected RepositoryService repositoryService;
     protected RuntimeService runtimeService;
     protected TaskService taskService;
 
-    public ProcessEngineImpl(ProcessEngineConfiguration configuration) {
-        this.configuration = configuration;
+    public ProcessEngineImpl(ProcessEngineConfigurationImpl configuration) {
+        this.processEngineConfiguration = configuration;
     }
 
     public RepositoryService getRepositoryService() {
@@ -27,5 +27,9 @@ public class ProcessEngineImpl implements ProcessEngine {
 
     public TaskService getTaskService() {
         return taskService;
+    }
+
+    public ProcessEngineConfigurationImpl getProcessEngineConfiguration() {
+        return processEngineConfiguration;
     }
 }

@@ -15,9 +15,9 @@ public abstract class ProcessEngineConfiguration {
 
     protected DataSource dataSource;
 
-    protected boolean isTransactionManaged;
+    protected String databaseId;
 
-    protected SqlSessionFactory sqlSessionFactory;
+    protected boolean isTransactionManaged;
 
     protected RepositoryService repositoryService;
 
@@ -33,20 +33,20 @@ public abstract class ProcessEngineConfiguration {
         this.dataSource = dataSource;
     }
 
+    public String getDatabaseId() {
+        return databaseId;
+    }
+
+    public void setDatabaseId(String databaseId) {
+        this.databaseId = databaseId;
+    }
+
     public boolean isTransactionManaged() {
         return isTransactionManaged;
     }
 
     public void setTransactionManaged(boolean transactionManaged) {
         isTransactionManaged = transactionManaged;
-    }
-
-    public SqlSessionFactory getSqlSessionFactory() {
-        return sqlSessionFactory;
-    }
-
-    public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
-        this.sqlSessionFactory = sqlSessionFactory;
     }
 
     public RepositoryService getRepositoryService() {

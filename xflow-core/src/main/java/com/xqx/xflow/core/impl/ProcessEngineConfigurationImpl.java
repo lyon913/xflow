@@ -1,10 +1,9 @@
-package com.xqx.xflow.core.impl.entity;
+package com.xqx.xflow.core.impl;
 
 import com.xqx.xflow.core.ProcessEngine;
 import com.xqx.xflow.core.ProcessEngineConfiguration;
 import com.xqx.xflow.core.XflowException;
-import com.xqx.xflow.core.util.IoUtil;
-import com.xqx.xflow.core.util.ReflectUtil;
+import com.xqx.xflow.core.impl.util.IoUtil;
 import org.apache.ibatis.builder.xml.XMLConfigBuilder;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.session.Configuration;
@@ -23,18 +22,23 @@ import java.util.Properties;
  * Created by Lyon on 2017/2/12.
  */
 public class ProcessEngineConfigurationImpl extends ProcessEngineConfiguration {
-    public static final String DEFAULT_MYBATIS_MAPPING_FILE = "org/activiti/db/mapping/mappings.xml";
+    /**
+     * mybatis配置文件路径
+     */
+    public static final String DEFAULT_MYBATIS_MAPPING_FILE = "com/xqx/xflow/db/mapping/mappings.xml";
 
     protected SqlSessionFactory sqlSessionFactory;
     protected TransactionFactory transactionFactory;
 
     public ProcessEngine buildProcessEngine() {
-        return null;
+        init();
+        return new ProcessEngineImpl(this);
     }
 
     protected void init() {
         initDataSource();
         initTransactionFactory();
+        initSqlSessionFactory();
     }
 
     protected void initDataSource() {
@@ -62,11 +66,9 @@ public class ProcessEngineConfigurationImpl extends ProcessEngineConfiguration {
                 inputStream = getMyBatisXmlConfigurationSteam();
 
                 // update the jdbc parameters to the configured ones...
-                Environment environment = new Environment("xflow-default", transactionFactory, dataSource);
+                Environment environment = new Environment("default", transactionFactory, dataSource);
                 Reader reader = new InputStreamReader(inputStream);
                 Properties properties = new Properties();
-
-
                 Configuration configuration = initMybatisConfiguration(environment, reader, properties);
                 sqlSessionFactory = new DefaultSqlSessionFactory(configuration);
 
@@ -82,13 +84,31 @@ public class ProcessEngineConfigurationImpl extends ProcessEngineConfiguration {
         XMLConfigBuilder parser = new XMLConfigBuilder(reader,"", properties);
         Configuration configuration = parser.getConfiguration();
         configuration.setEnvironment(environment);
-        return configuration;
+        return parser.parse();
     }
 
     protected InputStream getResourceAsStream(String resource) {
-        return ReflectUtil.getResourceAsStream(resource);
+        return IoUtil.getResourceAsStream(resource);
     }
     protected InputStream getMyBatisXmlConfigurationSteam() {
         return getResourceAsStream(DEFAULT_MYBATIS_MAPPING_FILE);
+    }
+
+
+    //--      getter and setter     -//
+    public SqlSessionFactory getSqlSessionFactory() {
+        return sqlSessionFactory;
+    }
+
+    public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
+        this.sqlSessionFactory = sqlSessionFactory;
+    }
+
+    public TransactionFactory getTransactionFactory() {
+        return transactionFactory;
+    }
+
+    public void setTransactionFactory(TransactionFactory transactionFactory) {
+        this.transactionFactory = transactionFactory;
     }
 }

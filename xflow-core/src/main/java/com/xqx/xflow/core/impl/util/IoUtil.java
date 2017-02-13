@@ -1,4 +1,4 @@
-package com.xqx.xflow.core.util;
+package com.xqx.xflow.core.impl.util;
 
 import com.xqx.xflow.core.XflowException;
 
@@ -90,5 +90,33 @@ public class IoUtil {
         } catch (IOException ignore) {
             // Exception is silently ignored
         }
+    }
+
+    public static InputStream getResourceAsStream(String name) {
+        InputStream resourceStream = null;
+        ClassLoader classLoader = getClassLoader();
+        if(classLoader != null) {
+            resourceStream = classLoader.getResourceAsStream(name);
+        }
+
+        if(resourceStream == null) {
+            // Try the current Thread context classloader
+            classLoader = Thread.currentThread().getContextClassLoader();
+            resourceStream = classLoader.getResourceAsStream(name);
+            if(resourceStream == null) {
+                // Finally, try the classloader for this class
+                classLoader = getClassLoader();
+                resourceStream = classLoader.getResourceAsStream(name);
+            }
+        }
+        return resourceStream;
+    }
+
+    public static ClassLoader getClassLoader() {
+        ClassLoader loader = null;
+        if(loader == null) {
+            loader = Thread.currentThread().getContextClassLoader();
+        }
+        return loader;
     }
 }

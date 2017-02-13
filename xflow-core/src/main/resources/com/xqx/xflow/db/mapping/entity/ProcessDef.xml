@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~       http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xqx.xflow.core.impl.entity.ProcessDef">
+
+    <!-- INSERT -->
+
+    <insert id="insertProcessDef" parameterType="com.xqx.xflow.core.impl.entity.ProcessDef">
+        INSERT INTO XFL_ProcessDef(
+        id,
+        name,
+        description,
+        candidateGroup,
+        processType,
+        creator,
+        createTime)
+        VALUES(
+        #{id ,jdbcType=VARCHAR},
+        #{name ,jdbcType=VARCHAR},
+        #{description ,jdbcType=VARCHAR},
+        #{candidateGroup ,jdbcType=VARCHAR},
+        #{processType ,jdbcType=VARCHAR},
+        #{creator ,jdbcType=VARCHAR},
+        #{createTime ,jdbcType=TIMESTAMP})
+    </insert>
+
+
+    <!-- UPDATE -->
+
+    <update id="updateProcessDef" parameterType="com.xqx.xflow.core.impl.entity.ProcessDef">
+        update XFL_ProcessDef
+        set
+        name = #{name, jdbcType=VARCHAR},
+        description = #{description, jdbcType=VARCHAR},
+        candidateGroup = #{description, jdbcType=VARCHAR},
+        processType = #{processType, jdbcType=VARCHAR}
+        where id = #{id}
+    </update>
+
+    <!-- DELETE -->
+
+    <delete id="deleteProcessDef" parameterType="com.xqx.xflow.core.impl.entity.ProcessDef">
+        delete from XFL_ProcessDef
+        where id = #{id}
+    </delete>
+
+    <!-- RESULTMAP -->
+
+    <resultMap id="processDefResultMap" type="com.xqx.xflow.core.impl.entity.ProcessDef">
+        <id property="id" column="id" jdbcType="VARCHAR" />
+        <result property="name" column="NAME_" jdbcType="VARCHAR" />
+        <result property="description" column="description" jdbcType="VARCHAR" />
+        <result property="candidateGroup" column="candidateGroup" jdbcType="VARCHAR" />
+        <result property="processType" column="processType" jdbcType="VARCHAR" />
+        <result property="creator" column="creator" jdbcType="VARCHAR" />
+        <result property="createTime" column="createTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <!-- SELECT -->
+
+    <select id="selectProcessDef" parameterType="string" resultMap="processDefResultMap">
+        select *
+        from XFL_ProcessDef
+        where id = #{id,jdbcType=VARCHAR}
+    </select>
+
+</mapper>

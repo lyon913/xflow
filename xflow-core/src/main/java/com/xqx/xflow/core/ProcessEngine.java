@@ -11,4 +11,6 @@ public interface ProcessEngine {
 
     TaskService getTaskService();
 
+    ProcessEngineConfiguration getProcessEngineConfiguration();
+
 }
