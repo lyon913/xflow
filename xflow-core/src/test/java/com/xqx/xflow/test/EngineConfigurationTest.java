@@ -28,7 +28,7 @@ public class EngineConfigurationTest {
         pd.setName("test1");
         pd.setCreateTime(new Date());
         SqlSessionFactory sessionFactory = ((ProcessEngineConfigurationImpl)processEngine.getProcessEngineConfiguration()).getSqlSessionFactory();
-        SqlSession session =  sessionFactory.openSession(Transactioniso);
+        SqlSession session =  sessionFactory.openSession();
         session.insert("insertProcessDef",pd);
         session.commit();
     }
