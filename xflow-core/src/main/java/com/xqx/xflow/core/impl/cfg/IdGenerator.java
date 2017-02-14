@@ -1,4 +1,4 @@
-package com.xqx.xflow.core.impl.db;
+package com.xqx.xflow.core.impl.cfg;
 
 /**
  * Created by Lyon on 2017/2/10.

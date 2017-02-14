@@ -16,11 +16,11 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.xqx.xflow.core.impl.entity.ProcessDef">
+<mapper namespace="com.xqx.xflow.core.impl.persistence.entity.ProcessDef">
 
     <!-- INSERT -->
 
-    <insert id="insertProcessDef" parameterType="com.xqx.xflow.core.impl.entity.ProcessDef">
+    <insert id="insertProcessDef" parameterType="com.xqx.xflow.core.impl.persistence.entity.ProcessDef">
         INSERT INTO XFL_ProcessDef(
         id,
         name,
@@ -42,7 +42,7 @@
 
     <!-- UPDATE -->
 
-    <update id="updateProcessDef" parameterType="com.xqx.xflow.core.impl.entity.ProcessDef">
+    <update id="updateProcessDef" parameterType="com.xqx.xflow.core.impl.persistence.entity.ProcessDef">
         update XFL_ProcessDef
         set
         name = #{name, jdbcType=VARCHAR},
@@ -54,16 +54,16 @@
 
     <!-- DELETE -->
 
-    <delete id="deleteProcessDef" parameterType="com.xqx.xflow.core.impl.entity.ProcessDef">
+    <delete id="deleteProcessDef" parameterType="com.xqx.xflow.core.impl.persistence.entity.ProcessDef">
         delete from XFL_ProcessDef
         where id = #{id}
     </delete>
 
     <!-- RESULTMAP -->
 
-    <resultMap id="processDefResultMap" type="com.xqx.xflow.core.impl.entity.ProcessDef">
+    <resultMap id="processDefResultMap" type="com.xqx.xflow.core.impl.persistence.entity.ProcessDef">
         <id property="id" column="id" jdbcType="VARCHAR" />
-        <result property="name" column="NAME_" jdbcType="VARCHAR" />
+        <result property="name" column="name" jdbcType="VARCHAR" />
         <result property="description" column="description" jdbcType="VARCHAR" />
         <result property="candidateGroup" column="candidateGroup" jdbcType="VARCHAR" />
         <result property="processType" column="processType" jdbcType="VARCHAR" />

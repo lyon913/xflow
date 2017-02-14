@@ -1,9 +1,8 @@
-package com.xqx.xflow.core.impl.entity;
+package com.xqx.xflow.core.impl.persistence.entity;
 
 import com.xqx.xflow.core.impl.db.PersistentObject;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by Lyon on 2017/1/23.

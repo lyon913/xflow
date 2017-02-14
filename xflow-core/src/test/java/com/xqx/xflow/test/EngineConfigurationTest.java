@@ -2,8 +2,9 @@ package com.xqx.xflow.test;
 
 import com.xqx.xflow.core.ProcessEngine;
 import com.xqx.xflow.core.ProcessEngineConfiguration;
-import com.xqx.xflow.core.impl.ProcessEngineConfigurationImpl;
-import com.xqx.xflow.core.impl.entity.ProcessDef;
+import com.xqx.xflow.core.impl.cfg.ProcessEngineConfigurationImpl;
+import com.xqx.xflow.core.impl.db.DbSqlSession;
+import com.xqx.xflow.core.impl.persistence.entity.ProcessDef;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.junit.Test;
@@ -20,17 +21,15 @@ public class EngineConfigurationTest {
     @Test
     public void configTest() throws SQLException {
         DataSource ds = new DriverManagerDataSource("jdbc:sqlserver://127.0.0.1:1433;DatabaseName=xflow","sa","xqx123456@");
-        ProcessEngineConfiguration configuration = new ProcessEngineConfigurationImpl();
+        ProcessEngineConfigurationImpl configuration = new ProcessEngineConfigurationImpl();
         configuration.setDataSource(ds);
+        configuration.setTransactionExternalManaged(true);
         ProcessEngine processEngine = configuration.buildProcessEngine();
         ProcessDef pd = new ProcessDef();
-        pd.setId("test1");
         pd.setName("test1");
         pd.setCreateTime(new Date());
-        SqlSessionFactory sessionFactory = ((ProcessEngineConfigurationImpl)processEngine.getProcessEngineConfiguration()).getSqlSessionFactory();
-        SqlSession session =  sessionFactory.openSession();
-        session.insert("insertProcessDef",pd);
-        session.commit();
+        DbSqlSession dbSqlSession = configuration.getDbSqlSessionFactory().openSession();
+        dbSqlSession.insert(pd);
     }
 
 }

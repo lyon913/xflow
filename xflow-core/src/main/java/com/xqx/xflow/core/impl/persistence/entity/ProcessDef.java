@@ -1,4 +1,4 @@
-package com.xqx.xflow.core.impl.entity;
+package com.xqx.xflow.core.impl.persistence.entity;
 
 import java.util.Date;
 

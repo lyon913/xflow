@@ -1,8 +1,11 @@
-package com.xqx.xflow.core.impl;
+package com.xqx.xflow.core.impl.cfg;
 
 import com.xqx.xflow.core.ProcessEngine;
 import com.xqx.xflow.core.ProcessEngineConfiguration;
 import com.xqx.xflow.core.XflowException;
+import com.xqx.xflow.core.impl.ProcessEngineImpl;
+import com.xqx.xflow.core.impl.db.DbSqlSessionFactory;
+import com.xqx.xflow.core.impl.db.UuidGenerator;
 import com.xqx.xflow.core.impl.util.IoUtil;
 import org.apache.ibatis.builder.xml.XMLConfigBuilder;
 import org.apache.ibatis.mapping.Environment;
@@ -17,8 +20,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Properties;
+import java.util.UUID;
 
 /**
+ * 独立流程引擎配置实现类
+ * 目前未实现独立事务管理，需依赖spring的事务管理。
+ * 因此该类被标记为abstract，应使用其子类SpringProcessEngineConfigurationImpl
  * Created by Lyon on 2017/2/12.
  */
 public class ProcessEngineConfigurationImpl extends ProcessEngineConfiguration {
@@ -27,8 +34,11 @@ public class ProcessEngineConfigurationImpl extends ProcessEngineConfiguration {
      */
     public static final String DEFAULT_MYBATIS_MAPPING_FILE = "com/xqx/xflow/db/mapping/mappings.xml";
 
-    protected SqlSessionFactory sqlSessionFactory;
     protected TransactionFactory transactionFactory;
+    protected SqlSessionFactory sqlSessionFactory;
+    protected DbSqlSessionFactory dbSqlSessionFactory;
+    protected IdGenerator idGenerator;
+
 
     public ProcessEngine buildProcessEngine() {
         init();
@@ -37,8 +47,10 @@ public class ProcessEngineConfigurationImpl extends ProcessEngineConfiguration {
 
     protected void init() {
         initDataSource();
+        initIdGenerator();
         initTransactionFactory();
         initSqlSessionFactory();
+        initDbSqlSessionFactory();
     }
 
     protected void initDataSource() {
@@ -49,11 +61,21 @@ public class ProcessEngineConfigurationImpl extends ProcessEngineConfiguration {
         }
     }
 
+    protected void initIdGenerator(){
+        if(idGenerator == null){
+            idGenerator = new UuidGenerator();
+        }
+    }
+
+
     protected void initTransactionFactory() {
         if (transactionFactory == null) {
-            if (isTransactionManaged) {
+            if (isTransactionExternalManaged) {
+                //容器托管的事务管理器
                 transactionFactory = new ManagedTransactionFactory();
             } else {
+                //尚未实现
+                //throw new RuntimeException("独立事务管理功能尚未实现。");
                 transactionFactory = new JdbcTransactionFactory();
             }
         }
@@ -79,6 +101,13 @@ public class ProcessEngineConfigurationImpl extends ProcessEngineConfiguration {
             }
         }
     }
+    protected void initDbSqlSessionFactory(){
+        if(dbSqlSessionFactory == null){
+            dbSqlSessionFactory = new DbSqlSessionFactory();
+            dbSqlSessionFactory.setSqlSessionFactory(sqlSessionFactory);
+            dbSqlSessionFactory.setIdGenerator(idGenerator);
+        }
+    }
 
     protected Configuration initMybatisConfiguration(Environment environment, Reader reader, Properties properties) {
         XMLConfigBuilder parser = new XMLConfigBuilder(reader,"", properties);
@@ -96,13 +125,6 @@ public class ProcessEngineConfigurationImpl extends ProcessEngineConfiguration {
 
 
     //--      getter and setter     -//
-    public SqlSessionFactory getSqlSessionFactory() {
-        return sqlSessionFactory;
-    }
-
-    public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
-        this.sqlSessionFactory = sqlSessionFactory;
-    }
 
     public TransactionFactory getTransactionFactory() {
         return transactionFactory;
@@ -111,4 +133,22 @@ public class ProcessEngineConfigurationImpl extends ProcessEngineConfiguration {
     public void setTransactionFactory(TransactionFactory transactionFactory) {
         this.transactionFactory = transactionFactory;
     }
+
+    public SqlSessionFactory getSqlSessionFactory() {
+        return sqlSessionFactory;
+    }
+
+    public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
+        this.sqlSessionFactory = sqlSessionFactory;
+    }
+
+    public DbSqlSessionFactory getDbSqlSessionFactory() {
+        return dbSqlSessionFactory;
+    }
+
+    public void setDbSqlSessionFactory(DbSqlSessionFactory dbSqlSessionFactory) {
+        this.dbSqlSessionFactory = dbSqlSessionFactory;
+    }
+
+    //--      getter and setter     -//
 }
