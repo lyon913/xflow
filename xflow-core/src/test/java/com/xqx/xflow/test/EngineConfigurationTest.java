@@ -20,7 +20,7 @@ import java.util.Date;
 public class EngineConfigurationTest {
     @Test
     public void configTest() throws SQLException {
-        DataSource ds = new DriverManagerDataSource("jdbc:sqlserver://127.0.0.1:1433;DatabaseName=xflow","sa","xqx123456@");
+        DataSource ds = new DriverManagerDataSource("jdbc:mysql://127.0.0.1:3306/xflow","xflow","xqx123456@");
         ProcessEngineConfigurationImpl configuration = new ProcessEngineConfigurationImpl();
         configuration.setDataSource(ds);
         configuration.setTransactionExternalManaged(true);
