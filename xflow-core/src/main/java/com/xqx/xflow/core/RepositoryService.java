@@ -6,5 +6,5 @@ import com.xqx.xflow.core.impl.persistence.entity.ProcessDef;
  * Created by Lyon on 2017/1/22.
  */
 public interface RepositoryService {
-    ProcessDef createProcessDef(ProcessDef processDef);
+    void createProcessDef(ProcessDef processDef);
 }

@@ -2,6 +2,8 @@ package com.xqx.xflow.core.impl.db;
 
 import com.xqx.xflow.core.impl.cfg.IdGenerator;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionManager;
+import org.springframework.jdbc.datasource.DataSourceUtils;
 
 /**
  * Created by Lyon on 2017/2/13.
@@ -9,6 +11,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
 public class DbSqlSessionFactory {
     protected SqlSessionFactory sqlSessionFactory;
     protected IdGenerator idGenerator;
+    protected ThreadLocal<DbSqlSession> dbSqlSessionThreadLocal = new ThreadLocal<DbSqlSession>();
+
 
     public SqlSessionFactory getSqlSessionFactory() {
         return sqlSessionFactory;
@@ -27,12 +31,34 @@ public class DbSqlSessionFactory {
     }
 
     public DbSqlSession openSession(){
-        return new DbSqlSession(this);
+        DbSqlSession dbSqlSession = dbSqlSessionThreadLocal.get();
+        if(dbSqlSession == null){
+            dbSqlSession = new DbSqlSession(this);
+        }
+        return dbSqlSession;
     }
 
-    public String getInsertStatement(PersistentObject object){
+    public String getInsertStatement(Class<?> persistentObjectClass){
         String prefix = "insert";
-        String className = object.getClass().getSimpleName();
+        String className = persistentObjectClass.getSimpleName();
+        return prefix + className;
+    }
+
+    public String getDeleteStatement(Class<?> persistentObjectClass){
+        String prefix = "delete";
+        String className = persistentObjectClass.getSimpleName();
+        return prefix + className;
+    }
+
+    public String getUpdateStatement(Class<?> persistentObjectClass){
+        String prefix = "delete";
+        String className = persistentObjectClass.getSimpleName();
+        return prefix + className;
+    }
+
+    public String getSeleteStatement(Class<?> persistentObjectClass){
+        String prefix = "select";
+        String className = persistentObjectClass.getSimpleName();
         return prefix + className;
     }
 }
