@@ -1,12 +1,13 @@
 
 --流程定义表
-CREATE TABLE XFL_ProcessDef(
+CREATE TABLE XFL_PROCESS_DEF(
   id VARCHAR (64) NOT  NULL ,
   name VARCHAR (255) NOT NULL ,
-  description VARCHAR (4000),
-  candidateGroup VARCHAR (255),
-  processType VARCHAR (255),
+  process_desc VARCHAR (4000),
+  candidate_group VARCHAR (255),
+  process_type VARCHAR (255),
   creator VARCHAR (255),
-  createTime DATETIME ,
+  gtm_create DATETIME ,
+  gtm_modify DATETIME ,
   PRIMARY KEY (id)
 );

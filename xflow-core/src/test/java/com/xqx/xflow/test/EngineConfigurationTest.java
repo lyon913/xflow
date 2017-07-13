@@ -1,5 +1,6 @@
 package com.xqx.xflow.test;
 
+import com.querydsl.sql.SQLQueryFactory;
 import com.xqx.xflow.core.ProcessEngine;
 import com.xqx.xflow.core.ProcessEngineConfiguration;
 import com.xqx.xflow.core.impl.cfg.ProcessEngineConfigurationImpl;
@@ -30,6 +31,7 @@ public class EngineConfigurationTest {
         pd.setCreateTime(new Date());
         DbSqlSession dbSqlSession = configuration.getDbSqlSessionFactory().openSession();
         dbSqlSession.insert(pd);
+
     }
 
 }
