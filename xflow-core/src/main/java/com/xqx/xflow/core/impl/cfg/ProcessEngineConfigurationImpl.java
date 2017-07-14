@@ -15,6 +15,7 @@ import org.apache.ibatis.session.defaults.DefaultSqlSessionFactory;
 import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 import org.apache.ibatis.transaction.managed.ManagedTransactionFactory;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
