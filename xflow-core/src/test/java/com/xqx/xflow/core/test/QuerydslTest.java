@@ -23,11 +23,12 @@ public class QuerydslTest {
 
 
     @Test
-    public void testBasic(){
+    public void dataAccessTest(){
         DataSource ds = new DriverManagerDataSource("jdbc:mysql://127.0.0.1/xflow","xflow","xqx1234");
 
         SQLTemplates templates = MySQLTemplates.builder().build();
         Configuration conf = new Configuration(templates);
+        SpringConnectionProvider connectionProvider = new SpringConnectionProvider(ds);
         SQLQueryFactory factory = new SQLQueryFactory(conf,ds);
 
         QXflProcessDef processDef = QXflProcessDef.xflProcessDef;
