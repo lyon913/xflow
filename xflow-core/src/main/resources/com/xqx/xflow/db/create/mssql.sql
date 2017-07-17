@@ -31,7 +31,7 @@ CREATE TABLE XFL_FLOW_DEF(
   flow_desc VARCHAR(500),
   source_id VARCHAR(36) NOT NULL ,
   target_id VARCHAR(36) NOT NULL ,
-  condition VARCHAR(4000),
+  condition_exp VARCHAR(4000),
   PRIMARY KEY (id)
 );
 
@@ -82,18 +82,18 @@ CREATE TABLE XFL_VARIABLE(
   proc_inst_id VARCHAR(36),
   task_inst_id VARCHAR(36),
   name VARCHAR(100) NOT NULL ,
-  type VARCHAR(50) NOT NULL ,
+  category VARCHAR(50) NOT NULL ,
   int_value INT,
   double_value DOUBLE,
   text_value VARCHAR(4000),
   PRIMARY KEY (id)
 );
 
-CREATE TABLE XFL_COMMENTS(
+CREATE TABLE XFL_COMMENT(
   id VARCHAR(36) NOT NULL ,
   proc_inst_id VARCHAR(36),
   task_inst_id VARCHAR(36),
-  type VARCHAR(50),
+  category VARCHAR(50),
   msg VARCHAR(4000),
   user_id VARCHAR(36),
   user_name VARCHAR(50),

@@ -1,13 +1,12 @@
 package com.xqx.xflow.core.test;
 
-import com.querydsl.core.QueryFactory;
 import com.querydsl.sql.Configuration;
 import com.querydsl.sql.MySQLTemplates;
 import com.querydsl.sql.SQLQueryFactory;
 import com.querydsl.sql.SQLTemplates;
 import com.querydsl.sql.spring.SpringConnectionProvider;
-import com.xqx.xflow.core.impl.persistence.entity.XflProcessDef;
-import com.xqx.xflow.core.impl.persistence.querydsl.QXflProcessDef;
+import com.xqx.xflow.core.impl.persistence.entity.XflProcDef;
+import com.xqx.xflow.core.impl.persistence.querydsl.QXflProcDef;
 import org.junit.Assert;
 
 import org.junit.Test;
@@ -31,9 +30,9 @@ public class QuerydslTest {
         SpringConnectionProvider connectionProvider = new SpringConnectionProvider(ds);
         SQLQueryFactory factory = new SQLQueryFactory(conf,ds);
 
-        QXflProcessDef processDef = QXflProcessDef.xflProcessDef;
-        List<XflProcessDef> list  = factory.selectFrom(processDef)
-                .where(processDef.name.like("test1"))
+        QXflProcDef procDef = QXflProcDef.xflProcDef;
+        List<XflProcDef> list  = factory.selectFrom(procDef)
+                .where(procDef.name.like("test1"))
                 .fetch();
         Assert.assertEquals(1,list.size());
     }
