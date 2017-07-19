@@ -28,7 +28,9 @@ public class QuerydslTest {
 
         SQLTemplates templates = MySQLTemplates.builder().build();
         Configuration conf = new Configuration(templates);
-        SQLQueryFactory factory = new SQLQueryFactory(conf,ds);
+
+        SpringConnectionProvider provider = new SpringConnectionProvider(ds);
+        SQLQueryFactory factory = new SQLQueryFactory(conf,provider);
 
         QXflProcessDef processDef = QXflProcessDef.xflProcessDef;
         List<XflProcessDef> list  = factory.selectFrom(processDef)
