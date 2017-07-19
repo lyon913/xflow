@@ -1,5 +1,6 @@
 package com.xqx.xflow.core.impl.cfg;
 
+import com.querydsl.sql.SQLQueryFactory;
 import com.xqx.xflow.core.ProcessEngine;
 import com.xqx.xflow.core.ProcessEngineConfiguration;
 import com.xqx.xflow.core.XflowException;
@@ -39,6 +40,8 @@ public class ProcessEngineConfigurationImpl extends ProcessEngineConfiguration {
     protected SqlSessionFactory sqlSessionFactory;
     protected DbSqlSessionFactory dbSqlSessionFactory;
     protected IdGenerator idGenerator;
+
+    protected SQLQueryFactory sqlQueryFactory;
 
 
     public ProcessEngine buildProcessEngine() {
