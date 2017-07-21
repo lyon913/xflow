@@ -2,8 +2,6 @@ package com.xqx.xflow.core.impl.db;
 
 import com.xqx.xflow.core.impl.cfg.IdGenerator;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.apache.ibatis.session.SqlSessionManager;
-import org.springframework.jdbc.datasource.DataSourceUtils;
 
 /**
  * Created by Lyon on 2017/2/13.

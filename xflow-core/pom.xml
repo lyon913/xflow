@@ -51,7 +51,10 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
         </dependency>
         <dependency>
             <groupId>org.mybatis</groupId>
@@ -63,6 +66,12 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.40</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>6.2.1.jre7</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -95,14 +104,15 @@
                 </executions>
                 <configuration>
                     <jdbcDriver>com.mysql.jdbc.Driver</jdbcDriver>
-                    <jdbcUrl>jdbc:mysql://localhost/xflow</jdbcUrl>
-                    <jdbcUser>xflow</jdbcUser>
-                    <jdbcPassword>xqx1234</jdbcPassword>
+                    <jdbcUrl>jdbc:sqlserver://localhost;databaseName=xflow</jdbcUrl>
+                    <jdbcUser>sa</jdbcUser>
+                    <jdbcPassword>xqx123456@</jdbcPassword>
                     <packageName>com.xqx.xflow.core.impl.persistence.querydsl</packageName>
                     <beanPackageName>com.xqx.xflow.core.impl.persistence.entity</beanPackageName>
                     <exportBeans>true</exportBeans>
-                    <sourceFolder>src/main/java/</sourceFolder>
-                    <targetFolder>src/main/java/</targetFolder>
+                    <exportViews>false</exportViews>
+                    <sourceFolder>target/generated-sources/</sourceFolder>
+                    <targetFolder>target/generated-sources/</targetFolder>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -110,6 +120,12 @@
                         <artifactId>mysql-connector-java</artifactId>
                         <version>5.1.40</version>
                     </dependency>
+                    <dependency>
+                        <groupId>com.microsoft.sqlserver</groupId>
+                        <artifactId>mssql-jdbc</artifactId>
+                        <version>6.2.1.jre7</version>
+                    </dependency>
+
                 </dependencies>
             </plugin>
         </plugins>
