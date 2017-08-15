@@ -110,7 +110,6 @@
                         <artifactId>mssql-jdbc</artifactId>
                         <version>6.2.1.jre7</version>
                     </dependency>
-
                 </dependencies>
             </plugin>
         </plugins>
