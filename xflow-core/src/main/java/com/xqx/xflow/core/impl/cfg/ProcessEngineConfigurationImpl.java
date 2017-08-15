@@ -85,7 +85,7 @@ public class ProcessEngineConfigurationImpl extends ProcessEngineConfiguration {
     }
 
     protected void initManagers(){
-        ProcessDefDao processDefDao = new ProcessDefDao(sqlQueryFactory);
+        //ProcessDefDao processDefDao = new ProcessDefDao(sqlQueryFactory);
     }
 
 

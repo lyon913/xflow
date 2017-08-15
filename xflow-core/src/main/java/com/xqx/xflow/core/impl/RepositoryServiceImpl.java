@@ -8,10 +8,9 @@ import com.xqx.xflow.core.impl.persistence.querydsl.QXflProcDef;
 /**
  * Created by Lyon on 2017/2/15.
  */
-public class RepositoryServiceImpl extends AbstractDao implements RepositoryService {
+public class RepositoryServiceImpl implements RepositoryService {
 
     public void createProcessDef(XflProcDef processDef) {
-        QXflProcDef qXflProcDef = QXflProcDef.xflProcDef;
-        getQueryFactory().insert(qXflProcDef).populate(processDef).execute();
+        QXflProcDef qXflProcDef = QXflProcDef.instance;
     }
 }
