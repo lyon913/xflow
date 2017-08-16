@@ -1,11 +1,14 @@
 package com.xqx.xflow.core.test;
 
-import com.querydsl.sql.*;
+import com.querydsl.sql.Configuration;
+import com.querydsl.sql.MySQLTemplates;
+import com.querydsl.sql.SQLQueryFactory;
+import com.querydsl.sql.SQLTemplates;
 import com.querydsl.sql.spring.SpringConnectionProvider;
 import com.xqx.xflow.core.impl.db.UuidGenerator;
 import com.xqx.xflow.core.impl.persistence.dao.ProcessDefDao;
 import com.xqx.xflow.core.impl.persistence.entity.XflProcDef;
-import com.xqx.xflow.core.impl.persistence.querydsl.QXflProcDef;
+import org.joda.time.DateTime;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -15,7 +18,6 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import javax.sql.DataSource;
-import java.util.List;
 import java.util.UUID;
 
 /**
@@ -48,9 +50,15 @@ public class QuerydslTest {
 
 
         XflProcDef selectedData = dao.selectById(procDef.getId());
+        Assert.assertNotNull(selectedData);
 
+        selectedData.setName("test:" + new DateTime());
+        dao.update(selectedData);
+
+        dao.delete(selectedData);
         //提交
         tm.commit(status);
-        Assert.assertNotNull(selectedData);
+
+
     }
 }

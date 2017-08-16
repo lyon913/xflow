@@ -11,6 +11,6 @@ import com.xqx.xflow.core.impl.persistence.querydsl.QXflProcDef;
 public class RepositoryServiceImpl implements RepositoryService {
 
     public void createProcessDef(XflProcDef processDef) {
-        QXflProcDef qXflProcDef = QXflProcDef.instance;
+        QXflProcDef qXflProcDef = QXflProcDef.xflProcDef;
     }
 }

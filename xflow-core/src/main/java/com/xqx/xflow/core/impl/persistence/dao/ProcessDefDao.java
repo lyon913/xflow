@@ -9,7 +9,8 @@ import com.xqx.xflow.core.impl.persistence.querydsl.QXflProcDef;
 /**
  * Created by Lyon on 2017/2/14.
  */
-public class ProcessDefDao extends AbstractDao<QXflProcDef,XflProcDef> {
+public class ProcessDefDao extends AbstractDao<QXflProcDef, XflProcDef, String> {
+
 
     public ProcessDefDao(SQLQueryFactory queryFactory, IdGenerator idGenerator) {
         super(queryFactory, idGenerator);
