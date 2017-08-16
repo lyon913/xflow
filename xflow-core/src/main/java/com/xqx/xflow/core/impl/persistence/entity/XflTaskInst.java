@@ -1,12 +1,14 @@
 package com.xqx.xflow.core.impl.persistence.entity;
 
+import com.xqx.xflow.core.impl.db.PersistentObject;
+
 import javax.annotation.Generated;
 
 /**
  * XflTaskInst is a Querydsl bean type
  */
 @Generated("com.querydsl.codegen.BeanSerializer")
-public class XflTaskInst {
+public class XflTaskInst implements PersistentObject {
 
     private java.sql.Timestamp claimTime;
 

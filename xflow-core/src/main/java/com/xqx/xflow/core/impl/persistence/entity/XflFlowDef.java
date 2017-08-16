@@ -1,12 +1,14 @@
 package com.xqx.xflow.core.impl.persistence.entity;
 
+import com.xqx.xflow.core.impl.db.PersistentObject;
+
 import javax.annotation.Generated;
 
 /**
  * XflFlowDef is a Querydsl bean type
  */
 @Generated("com.querydsl.codegen.BeanSerializer")
-public class XflFlowDef {
+public class XflFlowDef implements PersistentObject {
 
     private String conditionExp;
 
