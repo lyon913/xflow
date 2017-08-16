@@ -59,6 +59,20 @@
             <version>5.1.40</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>4.3.10.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>4.3.10.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+
+
     </dependencies>
     <build>
         <plugins>
@@ -110,7 +124,6 @@
                         <artifactId>mssql-jdbc</artifactId>
                         <version>6.2.1.jre7</version>
                     </dependency>
-
                 </dependencies>
             </plugin>
         </plugins>
