@@ -28,10 +28,8 @@ public class AbstractDao<Q extends RelationalPathBase<E>, E extends PersistentOb
     private static final String VARIABLE = "t";
     private static final String ID_FIELD = "id";
 
-    public AbstractDao(SQLQueryFactory queryFactory, IdGenerator idGenerator){
+    public AbstractDao(){
         this.qType = getQTypeInstance();
-        this.queryFactory = queryFactory;
-        this.idGenerator = idGenerator;
     }
 
 
