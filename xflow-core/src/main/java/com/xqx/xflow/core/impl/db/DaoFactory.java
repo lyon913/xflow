@@ -1,6 +1,7 @@
-package com.xqx.xflow.core.impl.cfg;
+package com.xqx.xflow.core.impl.db;
 
 import com.querydsl.sql.SQLQueryFactory;
+import com.xqx.xflow.core.impl.cfg.IdGenerator;
 import com.xqx.xflow.core.impl.persistence.dao.AbstractDao;
 
 public class DaoFactory {

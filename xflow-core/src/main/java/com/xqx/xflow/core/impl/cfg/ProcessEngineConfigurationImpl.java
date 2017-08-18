@@ -7,12 +7,8 @@ import com.xqx.xflow.core.ProcessEngine;
 import com.xqx.xflow.core.ProcessEngineConfiguration;
 import com.xqx.xflow.core.XflowException;
 import com.xqx.xflow.core.impl.ProcessEngineImpl;
+import com.xqx.xflow.core.impl.db.DaoFactory;
 import com.xqx.xflow.core.impl.db.UuidGenerator;
-import com.xqx.xflow.core.impl.persistence.dao.FlowDefDao;
-import com.xqx.xflow.core.impl.persistence.dao.ProcDefDao;
-import com.xqx.xflow.core.impl.persistence.dao.TaskDefDao;
-
-import java.util.Map;
 
 /**
  * 独立流程引擎配置实现类
@@ -24,7 +20,7 @@ public class ProcessEngineConfigurationImpl extends ProcessEngineConfiguration {
 
     protected IdGenerator idGenerator;
     protected SQLQueryFactory sqlQueryFactory;
-    protected Map<Class<?>, Object> managers;
+    protected DaoFactory daoFactory;
 
 
     public ProcessEngine buildProcessEngine() {
@@ -36,6 +32,7 @@ public class ProcessEngineConfigurationImpl extends ProcessEngineConfiguration {
         initDataSource();
         initIdGenerator();
         initSqlQueryFactory();
+        initDaoFactory();
     }
 
     protected void initDataSource() {
@@ -86,10 +83,12 @@ public class ProcessEngineConfigurationImpl extends ProcessEngineConfiguration {
         }
     }
 
-    protected void initDao(){
-        ProcDefDao procDefDao = new ProcDefDao(sqlQueryFactory,idGenerator);
-        TaskDefDao taskDefDao = new TaskDefDao(sqlQueryFactory,idGenerator);
-        FlowDefDao flowDefDao = new FlowDefDao(sqlQueryFactory,idGenerator);
+    protected void initDaoFactory(){
+        if(daoFactory == null){
+            daoFactory = new DaoFactory();
+            daoFactory.setIdGenerator(idGenerator);
+            daoFactory.setQueryFactory(sqlQueryFactory);
+        }
     }
 
 

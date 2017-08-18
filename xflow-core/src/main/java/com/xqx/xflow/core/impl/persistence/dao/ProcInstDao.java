@@ -12,8 +12,4 @@ import com.xqx.xflow.core.impl.persistence.querydsl.QXflTaskDef;
  */
 public class ProcInstDao extends AbstractDao<QXflProcInst, XflProcInst, String> {
 
-    public ProcInstDao(SQLQueryFactory queryFactory, IdGenerator idGenerator) {
-        super(queryFactory, idGenerator);
-    }
-
 }

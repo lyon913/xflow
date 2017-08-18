@@ -12,8 +12,4 @@ import com.xqx.xflow.core.impl.persistence.querydsl.QXflVariable;
  */
 public class VariableDao extends AbstractDao<QXflVariable, XflVariable, String> {
 
-    public VariableDao(SQLQueryFactory queryFactory, IdGenerator idGenerator) {
-        super(queryFactory, idGenerator);
-    }
-
 }

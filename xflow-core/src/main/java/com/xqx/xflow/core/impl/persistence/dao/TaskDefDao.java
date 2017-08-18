@@ -12,8 +12,4 @@ import com.xqx.xflow.core.impl.persistence.querydsl.QXflTaskDef;
  */
 public class TaskDefDao extends AbstractDao<QXflTaskDef, XflTaskDef, String> {
 
-    public TaskDefDao(SQLQueryFactory queryFactory, IdGenerator idGenerator) {
-        super(queryFactory, idGenerator);
-    }
-
 }

@@ -12,8 +12,4 @@ import com.xqx.xflow.core.impl.persistence.querydsl.QXflVariable;
  */
 public class CommentDao extends AbstractDao<QXflComment, XflComment, String> {
 
-    public CommentDao(SQLQueryFactory queryFactory, IdGenerator idGenerator) {
-        super(queryFactory, idGenerator);
-    }
-
 }
