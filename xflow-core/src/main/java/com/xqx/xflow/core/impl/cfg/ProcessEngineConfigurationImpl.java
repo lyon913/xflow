@@ -8,7 +8,9 @@ import com.xqx.xflow.core.ProcessEngineConfiguration;
 import com.xqx.xflow.core.XflowException;
 import com.xqx.xflow.core.impl.ProcessEngineImpl;
 import com.xqx.xflow.core.impl.db.UuidGenerator;
-import com.xqx.xflow.core.impl.persistence.dao.ProcessDefDao;
+import com.xqx.xflow.core.impl.persistence.dao.FlowDefDao;
+import com.xqx.xflow.core.impl.persistence.dao.ProcDefDao;
+import com.xqx.xflow.core.impl.persistence.dao.TaskDefDao;
 
 import java.util.Map;
 
@@ -84,8 +86,10 @@ public class ProcessEngineConfigurationImpl extends ProcessEngineConfiguration {
         }
     }
 
-    protected void initManagers(){
-        //ProcessDefDao processDefDao = new ProcessDefDao(sqlQueryFactory);
+    protected void initDao(){
+        ProcDefDao procDefDao = new ProcDefDao(sqlQueryFactory,idGenerator);
+        TaskDefDao taskDefDao = new TaskDefDao(sqlQueryFactory,idGenerator);
+        FlowDefDao flowDefDao = new FlowDefDao(sqlQueryFactory,idGenerator);
     }
 
 

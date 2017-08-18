@@ -1,12 +1,14 @@
 package com.xqx.xflow.core.impl.persistence.entity;
 
+import com.xqx.xflow.core.impl.db.PersistentObject;
+
 import javax.annotation.Generated;
 
 /**
  * XflComment is a Querydsl bean type
  */
 @Generated("com.querydsl.codegen.BeanSerializer")
-public class XflComment {
+public class XflComment implements PersistentObject {
 
     private String category;
 

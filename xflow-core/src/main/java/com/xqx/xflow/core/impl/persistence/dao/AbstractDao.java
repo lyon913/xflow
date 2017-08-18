@@ -49,6 +49,23 @@ public class AbstractDao<Q extends RelationalPathBase<E>, E extends PersistentOb
         return (Class<E>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];
     }
 
+
+    protected Path<T> getIdPath(){
+        try {
+            Field idField = getQClass().getDeclaredField(ID_FIELD);
+            Path<T> path = (Path<T>)idField.get(qType);
+            return path;
+        } catch (Exception e) {
+            throw new XflowException(e.getMessage(),e);
+        }
+    }
+
+    protected Predicate getIdPredicate(T id){
+        Expression<T> constant = Expressions.constant(id);
+        Predicate p = Expressions.predicate(Ops.EQ,getIdPath(),constant);
+        return p;
+    }
+
     public SQLQueryFactory getQueryFactory() {
         return queryFactory;
     }
@@ -86,6 +103,16 @@ public class AbstractDao<Q extends RelationalPathBase<E>, E extends PersistentOb
         queryFactory.delete(qType).where(p).execute();
     }
 
+
+    /**
+     * 删除记录
+     * @param id
+     */
+    public void delete(T id) {
+        Predicate p = getIdPredicate(id);
+        queryFactory.delete(qType).where(p).execute();
+    }
+
     /**
      * 更新记录
      * @param entity
@@ -103,23 +130,5 @@ public class AbstractDao<Q extends RelationalPathBase<E>, E extends PersistentOb
         Predicate p = getIdPredicate(id);
         return queryFactory.selectFrom(qType).where(p).fetchOne();
     }
-
-    public Path<T> getIdPath(){
-        try {
-           Field idField = getQClass().getDeclaredField(ID_FIELD);
-           Path<T> path = (Path<T>)idField.get(qType);
-           return path;
-        } catch (Exception e) {
-            throw new XflowException(e.getMessage(),e);
-        }
-    }
-
-    protected Predicate getIdPredicate(T id){
-        Expression<T> constant = Expressions.constant(id);
-        Predicate p = Expressions.predicate(Ops.EQ,getIdPath(),constant);
-        return p;
-    }
-
-
 
 }
