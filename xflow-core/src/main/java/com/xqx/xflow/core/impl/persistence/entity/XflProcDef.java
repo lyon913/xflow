@@ -16,7 +16,7 @@ public class XflProcDef implements PersistentObject{
 
     private String id;
 
-    private Byte isDeleted;
+    private Boolean isDeleted;
 
     private String name;
 
@@ -48,11 +48,11 @@ public class XflProcDef implements PersistentObject{
         this.id = id;
     }
 
-    public Byte getIsDeleted() {
+    public Boolean getIsDeleted() {
         return isDeleted;
     }
 
-    public void setIsDeleted(Byte isDeleted) {
+    public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
 

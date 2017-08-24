@@ -16,16 +16,11 @@ public class ProcessEngineImpl implements ProcessEngine {
 
     public ProcessEngineImpl(ProcessEngineConfigurationImpl configuration) {
         this.processEngineConfiguration = configuration;
-        init();
+        this.repositoryService = configuration.getRepositoryService();
+        this.runtimeService = configuration.getRuntimeService();
+        this.taskService = configuration.getTaskService();
     }
 
-    private void init(){
-
-    }
-
-    private void initService(){
-        repositoryService = new RepositoryServiceImpl();
-    }
 
     public RepositoryService getRepositoryService() {
         return repositoryService;

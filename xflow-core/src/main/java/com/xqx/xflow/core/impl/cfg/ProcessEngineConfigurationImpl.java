@@ -7,6 +7,9 @@ import com.xqx.xflow.core.ProcessEngine;
 import com.xqx.xflow.core.ProcessEngineConfiguration;
 import com.xqx.xflow.core.XflowException;
 import com.xqx.xflow.core.impl.ProcessEngineImpl;
+import com.xqx.xflow.core.impl.RepositoryServiceImpl;
+import com.xqx.xflow.core.impl.RuntimeServiceImpl;
+import com.xqx.xflow.core.impl.TaskServiceImpl;
 import com.xqx.xflow.core.impl.db.DaoFactory;
 import com.xqx.xflow.core.impl.db.UuidGenerator;
 
@@ -23,6 +26,8 @@ public class ProcessEngineConfigurationImpl extends ProcessEngineConfiguration {
     protected DaoFactory daoFactory;
 
 
+
+
     public ProcessEngine buildProcessEngine() {
         init();
         return new ProcessEngineImpl(this);
@@ -33,6 +38,7 @@ public class ProcessEngineConfigurationImpl extends ProcessEngineConfiguration {
         initIdGenerator();
         initSqlQueryFactory();
         initDaoFactory();
+        initServices();
     }
 
     protected void initDataSource() {
@@ -88,6 +94,20 @@ public class ProcessEngineConfigurationImpl extends ProcessEngineConfiguration {
             daoFactory = new DaoFactory();
             daoFactory.setIdGenerator(idGenerator);
             daoFactory.setQueryFactory(sqlQueryFactory);
+        }
+    }
+
+    protected void initServices(){
+        if(repositoryService == null){
+            repositoryService = new RepositoryServiceImpl(daoFactory);
+        }
+
+        if(taskService == null){
+            taskService = new TaskServiceImpl(daoFactory);
+        }
+
+        if(runtimeService == null){
+            runtimeService = new RuntimeServiceImpl(daoFactory);
         }
     }
 

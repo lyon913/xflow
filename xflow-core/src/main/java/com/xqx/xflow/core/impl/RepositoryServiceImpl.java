@@ -16,7 +16,7 @@ public class RepositoryServiceImpl extends ServiceImpl implements RepositoryServ
         this.procDefDao = daoFactory.getDao(ProcDefDao.class);
     }
 
-    public void createProcessDef(XflProcDef processDef) {
+    public void createProcDef(XflProcDef processDef) {
         procDefDao.insert(processDef);
     }
 

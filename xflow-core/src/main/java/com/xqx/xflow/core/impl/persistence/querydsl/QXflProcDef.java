@@ -32,7 +32,7 @@ public class QXflProcDef extends com.querydsl.sql.RelationalPathBase<XflProcDef>
 
     public final StringPath id = createString("id");
 
-    public final NumberPath<Byte> isDeleted = createNumber("isDeleted", Byte.class);
+    public final BooleanPath isDeleted = createBoolean("isDeleted");
 
     public final StringPath name = createString("name");
 
