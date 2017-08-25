@@ -11,6 +11,8 @@ import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
 
 import com.querydsl.sql.ColumnMetadata;
+import org.joda.time.DateTime;
+
 import java.sql.Types;
 
 
@@ -30,13 +32,13 @@ public class QXflProcInst extends com.querydsl.sql.RelationalPathBase<XflProcIns
 
     public final NumberPath<Long> duration = createNumber("duration", Long.class);
 
-    public final DateTimePath<java.sql.Timestamp> endTime = createDateTime("endTime", java.sql.Timestamp.class);
+    public final DateTimePath<DateTime> endTime = createDateTime("endTime", DateTime.class);
 
     public final StringPath id = createString("id");
 
-    public final NumberPath<Byte> isActive = createNumber("isActive", Byte.class);
+    public final BooleanPath isActive = createBoolean("isActive");
 
-    public final NumberPath<Byte> isDeleted = createNumber("isDeleted", Byte.class);
+    public final BooleanPath isDeleted = createBoolean("isDeleted");
 
     public final StringPath procDefId = createString("procDefId");
 

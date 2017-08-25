@@ -8,6 +8,7 @@ import com.querydsl.sql.spring.SpringConnectionProvider;
 import com.xqx.xflow.core.ProcessEngine;
 import com.xqx.xflow.core.ProcessEngineConfiguration;
 import com.xqx.xflow.core.RepositoryService;
+import com.xqx.xflow.core.RuntimeService;
 import com.xqx.xflow.core.impl.cfg.ProcessEngineConfigurationImpl;
 import com.xqx.xflow.core.impl.db.DaoFactory;
 import com.xqx.xflow.core.impl.db.UuidGenerator;
@@ -54,6 +55,9 @@ public class EngineTest {
         procDef.setProcKey(name);
 
         rs.createProcDef(procDef);
+
+        RuntimeService runtimeService = engine.getRuntimeService();
+        runtimeService.startProcessInstanceByKey(name,"test-1","user1","user1");
         //提交
         tm.commit(status);
 

@@ -1,6 +1,7 @@
 package com.xqx.xflow.core.impl.persistence.entity;
 
 import com.xqx.xflow.core.impl.db.PersistentObject;
+import org.joda.time.DateTime;
 
 import javax.annotation.Generated;
 
@@ -18,13 +19,13 @@ public class XflProcInst implements PersistentObject {
 
     private String id;
 
-    private Byte isActive;
+    private Boolean isActive;
 
-    private Byte isDeleted;
+    private Boolean isDeleted;
 
     private String procDefId;
 
-    private java.sql.Timestamp startTime;
+    private DateTime startTime;
 
     private String startUserId;
 
@@ -62,19 +63,19 @@ public class XflProcInst implements PersistentObject {
         this.id = id;
     }
 
-    public Byte getIsActive() {
+    public Boolean getIsActive() {
         return isActive;
     }
 
-    public void setIsActive(Byte isActive) {
+    public void setIsActive(Boolean isActive) {
         this.isActive = isActive;
     }
 
-    public Byte getIsDeleted() {
+    public Boolean getIsDeleted() {
         return isDeleted;
     }
 
-    public void setIsDeleted(Byte isDeleted) {
+    public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
     }
 
@@ -86,11 +87,11 @@ public class XflProcInst implements PersistentObject {
         this.procDefId = procDefId;
     }
 
-    public java.sql.Timestamp getStartTime() {
+    public DateTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(java.sql.Timestamp startTime) {
+    public void setStartTime(DateTime startTime) {
         this.startTime = startTime;
     }
 
