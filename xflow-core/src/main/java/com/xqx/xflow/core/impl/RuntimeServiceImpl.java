@@ -26,7 +26,6 @@ public class RuntimeServiceImpl extends ServiceImpl implements RuntimeService {
     @Override
     public XflProcInst startProcessInstanceByKey(String procKey, String businessKey, String userId, String userName) {
         XflProcDef procDef =  procDefDao.selectByProcKey(procKey);
-
         XflProcInst instance = newProcInst(procDef);
         instance.setBusinessKey(businessKey);
         instance.setStartUserId(userId);
@@ -36,13 +35,11 @@ public class RuntimeServiceImpl extends ServiceImpl implements RuntimeService {
     }
 
     private XflProcInst newProcInst(XflProcDef procDef){
-
         DateTime now = new DateTime();
         XflProcInst instance = new XflProcInst();
         instance.setProcDefId(procDef.getId());
         instance.setStartTime(now);
         instance.setIsActive(true);
-
         return instance;
     }
 
