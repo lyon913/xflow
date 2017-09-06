@@ -30,15 +30,17 @@ public class QXflProcDef extends com.querydsl.sql.RelationalPathBase<XflProcDef>
 
     public final StringPath category = createString("category");
 
-    public final StringPath id = createString("id");
+    public final StringPath dueDate = createString("dueDate");
 
-    public final BooleanPath isDeleted = createBoolean("isDeleted");
+    public final StringPath id = createString("id");
 
     public final StringPath name = createString("name");
 
     public final StringPath procDesc = createString("procDesc");
 
     public final StringPath procKey = createString("procKey");
+
+    public final BooleanPath valid = createBoolean("valid");
 
     public final com.querydsl.sql.PrimaryKey<XflProcDef> primary = createPrimaryKey(id);
 
@@ -70,11 +72,12 @@ public class QXflProcDef extends com.querydsl.sql.RelationalPathBase<XflProcDef>
     public void addMetadata() {
         addMetadata(candidateGroup, ColumnMetadata.named("candidate_group").withIndex(5).ofType(Types.VARCHAR).withSize(255));
         addMetadata(category, ColumnMetadata.named("category").withIndex(6).ofType(Types.VARCHAR).withSize(255));
-        addMetadata(id, ColumnMetadata.named("id").withIndex(1).ofType(Types.VARCHAR).withSize(36).notNull());
-        addMetadata(isDeleted, ColumnMetadata.named("is_deleted").withIndex(7).ofType(Types.TINYINT).withSize(3).notNull());
+        addMetadata(dueDate, ColumnMetadata.named("due_date").withIndex(7).ofType(Types.VARCHAR).withSize(255));
+        addMetadata(id, ColumnMetadata.named("id").withIndex(1).ofType(Types.VARCHAR).withSize(50).notNull());
         addMetadata(name, ColumnMetadata.named("name").withIndex(2).ofType(Types.VARCHAR).withSize(255).notNull());
         addMetadata(procDesc, ColumnMetadata.named("proc_desc").withIndex(4).ofType(Types.VARCHAR).withSize(1000));
         addMetadata(procKey, ColumnMetadata.named("proc_key").withIndex(3).ofType(Types.VARCHAR).withSize(255).notNull());
+        addMetadata(valid, ColumnMetadata.named("valid").withIndex(8).ofType(Types.BIT).notNull());
     }
 
 }

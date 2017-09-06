@@ -28,7 +28,7 @@ public class QXflComment extends com.querydsl.sql.RelationalPathBase<XflComment>
 
     public final StringPath category = createString("category");
 
-    public final DateTimePath<java.sql.Timestamp> createTime = createDateTime("createTime", java.sql.Timestamp.class);
+    public final DateTimePath<org.joda.time.DateTime> createTime = createDateTime("createTime", org.joda.time.DateTime.class);
 
     public final StringPath id = createString("id");
 
@@ -72,11 +72,11 @@ public class QXflComment extends com.querydsl.sql.RelationalPathBase<XflComment>
     public void addMetadata() {
         addMetadata(category, ColumnMetadata.named("category").withIndex(4).ofType(Types.VARCHAR).withSize(50));
         addMetadata(createTime, ColumnMetadata.named("create_time").withIndex(8).ofType(Types.TIMESTAMP).withSize(19));
-        addMetadata(id, ColumnMetadata.named("id").withIndex(1).ofType(Types.VARCHAR).withSize(36).notNull());
+        addMetadata(id, ColumnMetadata.named("id").withIndex(1).ofType(Types.VARCHAR).withSize(50).notNull());
         addMetadata(msg, ColumnMetadata.named("msg").withIndex(5).ofType(Types.VARCHAR).withSize(4000));
-        addMetadata(procInstId, ColumnMetadata.named("proc_inst_id").withIndex(2).ofType(Types.VARCHAR).withSize(36));
-        addMetadata(taskInstId, ColumnMetadata.named("task_inst_id").withIndex(3).ofType(Types.VARCHAR).withSize(36));
-        addMetadata(userId, ColumnMetadata.named("user_id").withIndex(6).ofType(Types.VARCHAR).withSize(36));
+        addMetadata(procInstId, ColumnMetadata.named("proc_inst_id").withIndex(2).ofType(Types.VARCHAR).withSize(50));
+        addMetadata(taskInstId, ColumnMetadata.named("task_inst_id").withIndex(3).ofType(Types.VARCHAR).withSize(50));
+        addMetadata(userId, ColumnMetadata.named("user_id").withIndex(6).ofType(Types.VARCHAR).withSize(50));
         addMetadata(userName, ColumnMetadata.named("user_name").withIndex(7).ofType(Types.VARCHAR).withSize(50));
     }
 

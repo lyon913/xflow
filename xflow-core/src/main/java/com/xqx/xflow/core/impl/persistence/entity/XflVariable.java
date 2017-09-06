@@ -1,8 +1,7 @@
 package com.xqx.xflow.core.impl.persistence.entity;
 
-import com.xqx.xflow.core.impl.db.PersistentObject;
-
 import javax.annotation.Generated;
+import com.xqx.xflow.core.impl.db.PersistentObject;
 
 /**
  * XflVariable is a Querydsl bean type

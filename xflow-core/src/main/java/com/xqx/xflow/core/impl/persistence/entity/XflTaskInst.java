@@ -1,8 +1,7 @@
 package com.xqx.xflow.core.impl.persistence.entity;
 
-import com.xqx.xflow.core.impl.db.PersistentObject;
-
 import javax.annotation.Generated;
+import com.xqx.xflow.core.impl.db.PersistentObject;
 
 /**
  * XflTaskInst is a Querydsl bean type
@@ -10,23 +9,21 @@ import javax.annotation.Generated;
 @Generated("com.querydsl.codegen.BeanSerializer")
 public class XflTaskInst implements PersistentObject {
 
-    private java.sql.Timestamp claimTime;
+    private Boolean active;
 
-    private java.sql.Timestamp dueTime;
+    private org.joda.time.DateTime claimTime;
+
+    private org.joda.time.DateTime dueDate;
 
     private Long duration;
 
-    private java.sql.Timestamp endTime;
+    private org.joda.time.DateTime endTime;
 
     private String id;
 
-    private Byte isActive;
-
-    private Byte isDeleted;
-
     private String procInstId;
 
-    private java.sql.Timestamp startTime;
+    private org.joda.time.DateTime startTime;
 
     private String taskAssignee;
 
@@ -38,20 +35,28 @@ public class XflTaskInst implements PersistentObject {
 
     private String taskOwnerName;
 
-    public java.sql.Timestamp getClaimTime() {
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public org.joda.time.DateTime getClaimTime() {
         return claimTime;
     }
 
-    public void setClaimTime(java.sql.Timestamp claimTime) {
+    public void setClaimTime(org.joda.time.DateTime claimTime) {
         this.claimTime = claimTime;
     }
 
-    public java.sql.Timestamp getDueTime() {
-        return dueTime;
+    public org.joda.time.DateTime getDueDate() {
+        return dueDate;
     }
 
-    public void setDueTime(java.sql.Timestamp dueTime) {
-        this.dueTime = dueTime;
+    public void setDueDate(org.joda.time.DateTime dueDate) {
+        this.dueDate = dueDate;
     }
 
     public Long getDuration() {
@@ -62,11 +67,11 @@ public class XflTaskInst implements PersistentObject {
         this.duration = duration;
     }
 
-    public java.sql.Timestamp getEndTime() {
+    public org.joda.time.DateTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(java.sql.Timestamp endTime) {
+    public void setEndTime(org.joda.time.DateTime endTime) {
         this.endTime = endTime;
     }
 
@@ -78,22 +83,6 @@ public class XflTaskInst implements PersistentObject {
         this.id = id;
     }
 
-    public Byte getIsActive() {
-        return isActive;
-    }
-
-    public void setIsActive(Byte isActive) {
-        this.isActive = isActive;
-    }
-
-    public Byte getIsDeleted() {
-        return isDeleted;
-    }
-
-    public void setIsDeleted(Byte isDeleted) {
-        this.isDeleted = isDeleted;
-    }
-
     public String getProcInstId() {
         return procInstId;
     }
@@ -102,11 +91,11 @@ public class XflTaskInst implements PersistentObject {
         this.procInstId = procInstId;
     }
 
-    public java.sql.Timestamp getStartTime() {
+    public org.joda.time.DateTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(java.sql.Timestamp startTime) {
+    public void setStartTime(org.joda.time.DateTime startTime) {
         this.startTime = startTime;
     }
 

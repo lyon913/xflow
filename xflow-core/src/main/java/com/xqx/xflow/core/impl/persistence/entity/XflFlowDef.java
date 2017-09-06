@@ -1,8 +1,7 @@
 package com.xqx.xflow.core.impl.persistence.entity;
 
-import com.xqx.xflow.core.impl.db.PersistentObject;
-
 import javax.annotation.Generated;
+import com.xqx.xflow.core.impl.db.PersistentObject;
 
 /**
  * XflFlowDef is a Querydsl bean type
@@ -18,9 +17,9 @@ public class XflFlowDef implements PersistentObject {
 
     private String name;
 
-    private String sourceId;
+    private String sourceTdefId;
 
-    private String targetId;
+    private String targetTdefId;
 
     public String getConditionExp() {
         return conditionExp;
@@ -54,20 +53,20 @@ public class XflFlowDef implements PersistentObject {
         this.name = name;
     }
 
-    public String getSourceId() {
-        return sourceId;
+    public String getSourceTdefId() {
+        return sourceTdefId;
     }
 
-    public void setSourceId(String sourceId) {
-        this.sourceId = sourceId;
+    public void setSourceTdefId(String sourceTdefId) {
+        this.sourceTdefId = sourceTdefId;
     }
 
-    public String getTargetId() {
-        return targetId;
+    public String getTargetTdefId() {
+        return targetTdefId;
     }
 
-    public void setTargetId(String targetId) {
-        this.targetId = targetId;
+    public void setTargetTdefId(String targetTdefId) {
+        this.targetTdefId = targetTdefId;
     }
 
 }

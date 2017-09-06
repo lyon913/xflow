@@ -11,8 +11,6 @@ import javax.annotation.Generated;
 import com.querydsl.core.types.Path;
 
 import com.querydsl.sql.ColumnMetadata;
-import org.joda.time.DateTime;
-
 import java.sql.Types;
 
 
@@ -28,21 +26,21 @@ public class QXflProcInst extends com.querydsl.sql.RelationalPathBase<XflProcIns
 
     public static final QXflProcInst xflProcInst = new QXflProcInst("xfl_proc_inst");
 
+    public final BooleanPath active = createBoolean("active");
+
     public final StringPath businessKey = createString("businessKey");
+
+    public final DateTimePath<org.joda.time.DateTime> dueDate = createDateTime("dueDate", org.joda.time.DateTime.class);
 
     public final NumberPath<Long> duration = createNumber("duration", Long.class);
 
-    public final DateTimePath<DateTime> endTime = createDateTime("endTime", DateTime.class);
+    public final DateTimePath<org.joda.time.DateTime> endTime = createDateTime("endTime", org.joda.time.DateTime.class);
 
     public final StringPath id = createString("id");
 
-    public final BooleanPath isActive = createBoolean("isActive");
-
-    public final BooleanPath isDeleted = createBoolean("isDeleted");
-
     public final StringPath procDefId = createString("procDefId");
 
-    public final DateTimePath<java.sql.Timestamp> startTime = createDateTime("startTime", java.sql.Timestamp.class);
+    public final DateTimePath<org.joda.time.DateTime> startTime = createDateTime("startTime", org.joda.time.DateTime.class);
 
     public final StringPath startUserId = createString("startUserId");
 
@@ -76,13 +74,13 @@ public class QXflProcInst extends com.querydsl.sql.RelationalPathBase<XflProcIns
     }
 
     public void addMetadata() {
+        addMetadata(active, ColumnMetadata.named("active").withIndex(10).ofType(Types.BIT).notNull());
         addMetadata(businessKey, ColumnMetadata.named("business_key").withIndex(3).ofType(Types.VARCHAR).withSize(100).notNull());
-        addMetadata(duration, ColumnMetadata.named("duration").withIndex(8).ofType(Types.BIGINT).withSize(19));
+        addMetadata(dueDate, ColumnMetadata.named("due_date").withIndex(8).ofType(Types.TIMESTAMP).withSize(19));
+        addMetadata(duration, ColumnMetadata.named("duration").withIndex(9).ofType(Types.BIGINT).withSize(19));
         addMetadata(endTime, ColumnMetadata.named("end_time").withIndex(7).ofType(Types.TIMESTAMP).withSize(19));
-        addMetadata(id, ColumnMetadata.named("id").withIndex(1).ofType(Types.VARCHAR).withSize(36).notNull());
-        addMetadata(isActive, ColumnMetadata.named("is_active").withIndex(9).ofType(Types.TINYINT).withSize(3));
-        addMetadata(isDeleted, ColumnMetadata.named("is_deleted").withIndex(10).ofType(Types.TINYINT).withSize(3));
-        addMetadata(procDefId, ColumnMetadata.named("proc_def_id").withIndex(2).ofType(Types.VARCHAR).withSize(36).notNull());
+        addMetadata(id, ColumnMetadata.named("id").withIndex(1).ofType(Types.VARCHAR).withSize(50).notNull());
+        addMetadata(procDefId, ColumnMetadata.named("proc_def_id").withIndex(2).ofType(Types.VARCHAR).withSize(50).notNull());
         addMetadata(startTime, ColumnMetadata.named("start_time").withIndex(4).ofType(Types.TIMESTAMP).withSize(19).notNull());
         addMetadata(startUserId, ColumnMetadata.named("start_user_id").withIndex(5).ofType(Types.VARCHAR).withSize(50).notNull());
         addMetadata(startUserName, ColumnMetadata.named("start_user_name").withIndex(6).ofType(Types.VARCHAR).withSize(50).notNull());

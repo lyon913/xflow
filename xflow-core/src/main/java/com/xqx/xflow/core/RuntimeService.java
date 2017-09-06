@@ -7,9 +7,7 @@ import com.xqx.xflow.core.impl.persistence.entity.XflProcInst;
  * Created by Lyon on 2017/1/22.
  */
 public interface RuntimeService {
-    XflProcInst startProcessInstanceByKey(String procKey, String businessKey, String userId, String userName);
-
-    XflProcInst startProcessInstanceById(String procDefId, String businessKey);
+    XflProcInst startProcessInstanceByKey(String procDefKey, String businessKey, String userId, String userName);
 
     XflProcInst findProcessInstanceByBusinessKey(String businessKey);
 

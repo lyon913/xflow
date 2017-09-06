@@ -1,16 +1,13 @@
 package com.xqx.xflow.core.impl.persistence.entity;
 
-import com.xqx.xflow.core.impl.db.PersistentObject;
-
 import javax.annotation.Generated;
+import com.xqx.xflow.core.impl.db.PersistentObject;
 
 /**
  * XflFlowInst is a Querydsl bean type
  */
 @Generated("com.querydsl.codegen.BeanSerializer")
 public class XflFlowInst implements PersistentObject {
-
-    private String flowDefId;
 
     private String id;
 
@@ -19,14 +16,6 @@ public class XflFlowInst implements PersistentObject {
     private String sourceId;
 
     private String targetId;
-
-    public String getFlowDefId() {
-        return flowDefId;
-    }
-
-    public void setFlowDefId(String flowDefId) {
-        this.flowDefId = flowDefId;
-    }
 
     public String getId() {
         return id;

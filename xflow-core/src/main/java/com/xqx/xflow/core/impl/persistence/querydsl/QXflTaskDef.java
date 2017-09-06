@@ -30,17 +30,17 @@ public class QXflTaskDef extends com.querydsl.sql.RelationalPathBase<XflTaskDef>
 
     public final StringPath candidateUser = createString("candidateUser");
 
-    public final StringPath category = createString("category");
+    public final StringPath dueDate = createString("dueDate");
 
     public final StringPath id = createString("id");
 
     public final StringPath name = createString("name");
 
-    public final StringPath procInstId = createString("procInstId");
+    public final StringPath procDefId = createString("procDefId");
 
     public final StringPath taskDesc = createString("taskDesc");
 
-    public final StringPath taskDueTime = createString("taskDueTime");
+    public final StringPath taskType = createString("taskType");
 
     public final com.querydsl.sql.PrimaryKey<XflTaskDef> primary = createPrimaryKey(id);
 
@@ -72,12 +72,12 @@ public class QXflTaskDef extends com.querydsl.sql.RelationalPathBase<XflTaskDef>
     public void addMetadata() {
         addMetadata(candidateGroup, ColumnMetadata.named("candidate_group").withIndex(6).ofType(Types.VARCHAR).withSize(255));
         addMetadata(candidateUser, ColumnMetadata.named("candidate_user").withIndex(7).ofType(Types.VARCHAR).withSize(255));
-        addMetadata(category, ColumnMetadata.named("category").withIndex(5).ofType(Types.VARCHAR).withSize(255));
-        addMetadata(id, ColumnMetadata.named("id").withIndex(1).ofType(Types.VARCHAR).withSize(36).notNull());
+        addMetadata(dueDate, ColumnMetadata.named("due_date").withIndex(8).ofType(Types.VARCHAR).withSize(50));
+        addMetadata(id, ColumnMetadata.named("id").withIndex(1).ofType(Types.VARCHAR).withSize(50).notNull());
         addMetadata(name, ColumnMetadata.named("name").withIndex(3).ofType(Types.VARCHAR).withSize(255).notNull());
-        addMetadata(procInstId, ColumnMetadata.named("proc_inst_id").withIndex(2).ofType(Types.VARCHAR).withSize(36).notNull());
+        addMetadata(procDefId, ColumnMetadata.named("proc_def_id").withIndex(2).ofType(Types.VARCHAR).withSize(50).notNull());
         addMetadata(taskDesc, ColumnMetadata.named("task_desc").withIndex(4).ofType(Types.VARCHAR).withSize(1000));
-        addMetadata(taskDueTime, ColumnMetadata.named("task_due_time").withIndex(8).ofType(Types.VARCHAR).withSize(50));
+        addMetadata(taskType, ColumnMetadata.named("task_type").withIndex(5).ofType(Types.VARCHAR).withSize(255));
     }
 
 }

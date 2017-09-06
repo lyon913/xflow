@@ -103,15 +103,19 @@
                 </executions>
                 <configuration>
                     <jdbcDriver>com.mysql.jdbc.Driver</jdbcDriver>
-                    <jdbcUrl>jdbc:sqlserver://localhost;databaseName=xflow</jdbcUrl>
-                    <jdbcUser>sa</jdbcUser>
-                    <jdbcPassword>xqx123456@</jdbcPassword>
+                    <jdbcUrl>jdbc:mysql://127.0.0.1/xflow</jdbcUrl>
+                    <jdbcUser>xflow</jdbcUser>
+                    <jdbcPassword>xqx1234</jdbcPassword>
                     <packageName>com.xqx.xflow.core.impl.persistence.querydsl</packageName>
                     <beanPackageName>com.xqx.xflow.core.impl.persistence.entity</beanPackageName>
                     <exportBeans>true</exportBeans>
                     <exportViews>false</exportViews>
-                    <sourceFolder>target/generated-sources/</sourceFolder>
-                    <targetFolder>target/generated-sources/</targetFolder>
+                    <beanInterfaces>com.xqx.xflow.core.impl.db.PersistentObject</beanInterfaces>
+                    <customTypes>
+                        <customType>com.querydsl.sql.types.DateTimeType</customType>
+                    </customTypes>
+                    <sourceFolder>src/main/java</sourceFolder>
+                    <targetFolder>src/main/java</targetFolder>
                 </configuration>
                 <dependencies>
                     <dependency>

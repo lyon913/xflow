@@ -26,8 +26,6 @@ public class QXflFlowInst extends com.querydsl.sql.RelationalPathBase<XflFlowIns
 
     public static final QXflFlowInst xflFlowInst = new QXflFlowInst("xfl_flow_inst");
 
-    public final StringPath flowDefId = createString("flowDefId");
-
     public final StringPath id = createString("id");
 
     public final StringPath procInstId = createString("procInstId");
@@ -64,11 +62,10 @@ public class QXflFlowInst extends com.querydsl.sql.RelationalPathBase<XflFlowIns
     }
 
     public void addMetadata() {
-        addMetadata(flowDefId, ColumnMetadata.named("flow_def_id").withIndex(3).ofType(Types.VARCHAR).withSize(36).notNull());
-        addMetadata(id, ColumnMetadata.named("id").withIndex(1).ofType(Types.VARCHAR).withSize(36).notNull());
-        addMetadata(procInstId, ColumnMetadata.named("proc_inst_id").withIndex(2).ofType(Types.VARCHAR).withSize(36).notNull());
-        addMetadata(sourceId, ColumnMetadata.named("source_id").withIndex(4).ofType(Types.VARCHAR).withSize(36).notNull());
-        addMetadata(targetId, ColumnMetadata.named("target_id").withIndex(5).ofType(Types.VARCHAR).withSize(36).notNull());
+        addMetadata(id, ColumnMetadata.named("id").withIndex(1).ofType(Types.VARCHAR).withSize(50).notNull());
+        addMetadata(procInstId, ColumnMetadata.named("proc_inst_id").withIndex(2).ofType(Types.VARCHAR).withSize(50).notNull());
+        addMetadata(sourceId, ColumnMetadata.named("source_id").withIndex(3).ofType(Types.VARCHAR).withSize(50).notNull());
+        addMetadata(targetId, ColumnMetadata.named("target_id").withIndex(4).ofType(Types.VARCHAR).withSize(50).notNull());
     }
 
 }

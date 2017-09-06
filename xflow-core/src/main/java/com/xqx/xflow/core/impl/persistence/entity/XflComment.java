@@ -1,8 +1,7 @@
 package com.xqx.xflow.core.impl.persistence.entity;
 
-import com.xqx.xflow.core.impl.db.PersistentObject;
-
 import javax.annotation.Generated;
+import com.xqx.xflow.core.impl.db.PersistentObject;
 
 /**
  * XflComment is a Querydsl bean type
@@ -12,7 +11,7 @@ public class XflComment implements PersistentObject {
 
     private String category;
 
-    private java.sql.Timestamp createTime;
+    private org.joda.time.DateTime createTime;
 
     private String id;
 
@@ -34,11 +33,11 @@ public class XflComment implements PersistentObject {
         this.category = category;
     }
 
-    public java.sql.Timestamp getCreateTime() {
+    public org.joda.time.DateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(java.sql.Timestamp createTime) {
+    public void setCreateTime(org.joda.time.DateTime createTime) {
         this.createTime = createTime;
     }
 

@@ -11,6 +11,6 @@ import com.xqx.xflow.core.impl.persistence.querydsl.QXflProcDef;
 public class ProcDefDao extends AbstractDao<QXflProcDef, XflProcDef, String> {
     public XflProcDef selectByProcKey(String key){
         QXflProcDef procDef = QXflProcDef.xflProcDef;
-        return queryFactory.selectFrom(procDef).where(procDef.procKey.eq(key).and(procDef.isDeleted.eq(false) )).fetchOne();
+        return queryFactory.selectFrom(procDef).where(procDef.procKey.eq(key).and(procDef.valid.eq(true) )).fetchOne();
     }
 }

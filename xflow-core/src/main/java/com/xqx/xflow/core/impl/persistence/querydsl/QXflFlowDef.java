@@ -34,9 +34,9 @@ public class QXflFlowDef extends com.querydsl.sql.RelationalPathBase<XflFlowDef>
 
     public final StringPath name = createString("name");
 
-    public final StringPath sourceId = createString("sourceId");
+    public final StringPath sourceTdefId = createString("sourceTdefId");
 
-    public final StringPath targetId = createString("targetId");
+    public final StringPath targetTdefId = createString("targetTdefId");
 
     public final com.querydsl.sql.PrimaryKey<XflFlowDef> primary = createPrimaryKey(id);
 
@@ -68,10 +68,10 @@ public class QXflFlowDef extends com.querydsl.sql.RelationalPathBase<XflFlowDef>
     public void addMetadata() {
         addMetadata(conditionExp, ColumnMetadata.named("condition_exp").withIndex(6).ofType(Types.VARCHAR).withSize(4000));
         addMetadata(flowDesc, ColumnMetadata.named("flow_desc").withIndex(3).ofType(Types.VARCHAR).withSize(500));
-        addMetadata(id, ColumnMetadata.named("id").withIndex(1).ofType(Types.VARCHAR).withSize(36).notNull());
+        addMetadata(id, ColumnMetadata.named("id").withIndex(1).ofType(Types.VARCHAR).withSize(50).notNull());
         addMetadata(name, ColumnMetadata.named("name").withIndex(2).ofType(Types.VARCHAR).withSize(100).notNull());
-        addMetadata(sourceId, ColumnMetadata.named("source_id").withIndex(4).ofType(Types.VARCHAR).withSize(36).notNull());
-        addMetadata(targetId, ColumnMetadata.named("target_id").withIndex(5).ofType(Types.VARCHAR).withSize(36).notNull());
+        addMetadata(sourceTdefId, ColumnMetadata.named("source_tdef_id").withIndex(4).ofType(Types.VARCHAR).withSize(50).notNull());
+        addMetadata(targetTdefId, ColumnMetadata.named("target_tdef_id").withIndex(5).ofType(Types.VARCHAR).withSize(50).notNull());
     }
 
 }

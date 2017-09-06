@@ -1,28 +1,29 @@
 package com.xqx.xflow.core.impl.persistence.entity;
 
-import com.xqx.xflow.core.impl.db.PersistentObject;
-
 import javax.annotation.Generated;
+import com.xqx.xflow.core.impl.db.PersistentObject;
 
 /**
  * XflProcDef is a Querydsl bean type
  */
 @Generated("com.querydsl.codegen.BeanSerializer")
-public class XflProcDef implements PersistentObject{
+public class XflProcDef implements PersistentObject {
 
     private String candidateGroup;
 
     private String category;
 
-    private String id;
+    private String dueDate;
 
-    private Boolean isDeleted;
+    private String id;
 
     private String name;
 
     private String procDesc;
 
     private String procKey;
+
+    private Boolean valid;
 
     public String getCandidateGroup() {
         return candidateGroup;
@@ -40,20 +41,20 @@ public class XflProcDef implements PersistentObject{
         this.category = category;
     }
 
+    public String getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
+    }
+
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public Boolean getIsDeleted() {
-        return isDeleted;
-    }
-
-    public void setIsDeleted(Boolean isDeleted) {
-        this.isDeleted = isDeleted;
     }
 
     public String getName() {
@@ -78,6 +79,14 @@ public class XflProcDef implements PersistentObject{
 
     public void setProcKey(String procKey) {
         this.procKey = procKey;
+    }
+
+    public Boolean getValid() {
+        return valid;
+    }
+
+    public void setValid(Boolean valid) {
+        this.valid = valid;
     }
 
 }

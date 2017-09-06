@@ -1,8 +1,7 @@
 package com.xqx.xflow.core.impl.persistence.entity;
 
-import com.xqx.xflow.core.impl.db.PersistentObject;
-
 import javax.annotation.Generated;
+import com.xqx.xflow.core.impl.db.PersistentObject;
 
 /**
  * XflTaskDef is a Querydsl bean type
@@ -14,17 +13,17 @@ public class XflTaskDef implements PersistentObject {
 
     private String candidateUser;
 
-    private String category;
+    private String dueDate;
 
     private String id;
 
     private String name;
 
-    private String procInstId;
+    private String procDefId;
 
     private String taskDesc;
 
-    private String taskDueTime;
+    private String taskType;
 
     public String getCandidateGroup() {
         return candidateGroup;
@@ -42,12 +41,12 @@ public class XflTaskDef implements PersistentObject {
         this.candidateUser = candidateUser;
     }
 
-    public String getCategory() {
-        return category;
+    public String getDueDate() {
+        return dueDate;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
     }
 
     public String getId() {
@@ -66,12 +65,12 @@ public class XflTaskDef implements PersistentObject {
         this.name = name;
     }
 
-    public String getProcInstId() {
-        return procInstId;
+    public String getProcDefId() {
+        return procDefId;
     }
 
-    public void setProcInstId(String procInstId) {
-        this.procInstId = procInstId;
+    public void setProcDefId(String procDefId) {
+        this.procDefId = procDefId;
     }
 
     public String getTaskDesc() {
@@ -82,12 +81,12 @@ public class XflTaskDef implements PersistentObject {
         this.taskDesc = taskDesc;
     }
 
-    public String getTaskDueTime() {
-        return taskDueTime;
+    public String getTaskType() {
+        return taskType;
     }
 
-    public void setTaskDueTime(String taskDueTime) {
-        this.taskDueTime = taskDueTime;
+    public void setTaskType(String taskType) {
+        this.taskType = taskType;
     }
 
 }

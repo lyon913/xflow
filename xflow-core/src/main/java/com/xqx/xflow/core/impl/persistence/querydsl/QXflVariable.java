@@ -72,11 +72,11 @@ public class QXflVariable extends com.querydsl.sql.RelationalPathBase<XflVariabl
     public void addMetadata() {
         addMetadata(category, ColumnMetadata.named("category").withIndex(5).ofType(Types.VARCHAR).withSize(50).notNull());
         addMetadata(doubleValue, ColumnMetadata.named("double_value").withIndex(7).ofType(Types.DOUBLE).withSize(22));
-        addMetadata(id, ColumnMetadata.named("id").withIndex(1).ofType(Types.VARCHAR).withSize(36).notNull());
+        addMetadata(id, ColumnMetadata.named("id").withIndex(1).ofType(Types.VARCHAR).withSize(50).notNull());
         addMetadata(intValue, ColumnMetadata.named("int_value").withIndex(6).ofType(Types.INTEGER).withSize(10));
         addMetadata(name, ColumnMetadata.named("name").withIndex(4).ofType(Types.VARCHAR).withSize(100).notNull());
-        addMetadata(procInstId, ColumnMetadata.named("proc_inst_id").withIndex(2).ofType(Types.VARCHAR).withSize(36));
-        addMetadata(taskInstId, ColumnMetadata.named("task_inst_id").withIndex(3).ofType(Types.VARCHAR).withSize(36));
+        addMetadata(procInstId, ColumnMetadata.named("proc_inst_id").withIndex(2).ofType(Types.VARCHAR).withSize(50));
+        addMetadata(taskInstId, ColumnMetadata.named("task_inst_id").withIndex(3).ofType(Types.VARCHAR).withSize(50));
         addMetadata(textValue, ColumnMetadata.named("text_value").withIndex(8).ofType(Types.VARCHAR).withSize(4000));
     }
 

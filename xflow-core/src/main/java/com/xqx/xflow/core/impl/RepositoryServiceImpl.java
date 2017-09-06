@@ -29,6 +29,6 @@ public class RepositoryServiceImpl extends ServiceImpl implements RepositoryServ
     }
 
     public void deleteProcDef(XflProcDef procDef){
-        procDef.setIsDeleted(true);
+        procDef.setValid(true);
     }
 }
