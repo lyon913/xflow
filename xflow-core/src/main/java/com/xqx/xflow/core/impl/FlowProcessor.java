@@ -2,8 +2,12 @@ package com.xqx.xflow.core.impl;
 
 import com.google.common.base.Strings;
 import com.xqx.xflow.core.XflowException;
+import com.xqx.xflow.core.impl.persistence.dao.ProcDefDao;
+import com.xqx.xflow.core.impl.persistence.dao.ProcInstDao;
+import com.xqx.xflow.core.impl.persistence.dao.TaskDefDao;
 import com.xqx.xflow.core.impl.persistence.entity.XflProcDef;
 import com.xqx.xflow.core.impl.persistence.entity.XflProcInst;
+import com.xqx.xflow.core.impl.persistence.entity.XflTaskDef;
 import org.joda.time.DateTime;
 import org.joda.time.Period;
 
@@ -11,6 +15,12 @@ public class FlowProcessor {
 
     public String userId;
     public String userName;
+
+    private ProcDefDao procDefDao;
+    private TaskDefDao taskDefDao;
+    private ProcInstDao procInstDao;
+
+
 
 
     public void setUserInfo(String userId, String userName){
@@ -41,4 +51,6 @@ public class FlowProcessor {
 
         return instance;
     }
+
+
 }
