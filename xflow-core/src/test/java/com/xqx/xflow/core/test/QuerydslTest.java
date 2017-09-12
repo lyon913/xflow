@@ -5,9 +5,9 @@ import com.querydsl.sql.MySQLTemplates;
 import com.querydsl.sql.SQLQueryFactory;
 import com.querydsl.sql.SQLTemplates;
 import com.querydsl.sql.spring.SpringConnectionProvider;
-import com.xqx.xflow.core.impl.db.DaoFactory;
+import com.xqx.xflow.core.impl.db.DbContext;
 import com.xqx.xflow.core.impl.db.UuidGenerator;
-import com.xqx.xflow.core.impl.persistence.dao.ProcDefDao;
+import com.xqx.xflow.core.impl.persistence.repository.ProcDefRepoistory;
 import com.xqx.xflow.core.impl.persistence.entity.XflProcDef;
 import org.joda.time.DateTime;
 import org.junit.Assert;
@@ -46,10 +46,10 @@ public class QuerydslTest {
         procDef.setName(name);
         procDef.setProcKey(name);
 
-        DaoFactory daoFactory = new DaoFactory();
+        DbContext daoFactory = new DbContext();
         daoFactory.setIdGenerator(new UuidGenerator());
         daoFactory.setQueryFactory(factory);
-        ProcDefDao dao =daoFactory.getDao(ProcDefDao.class);
+        ProcDefRepoistory dao =daoFactory.getDao(ProcDefRepoistory.class);
         dao.insert(procDef);
 
 

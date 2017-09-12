@@ -1,37 +1,37 @@
 package com.xqx.xflow.core.impl;
 
-import com.xqx.xflow.core.impl.db.DaoFactory;
-import com.xqx.xflow.core.impl.persistence.dao.*;
+import com.xqx.xflow.core.impl.db.DbContext;
+import com.xqx.xflow.core.impl.persistence.repository.*;
 
 public class ServiceImpl {
 
-    private DaoFactory daoFactory;
+    private DbContext daoFactory;
 
-    public DaoFactory getDaoFactory() {
+    public DbContext getDaoFactory() {
         return daoFactory;
     }
 
-    public void setDaoFactory(DaoFactory daoFactory) {
+    public void setDaoFactory(DbContext daoFactory) {
         this.daoFactory = daoFactory;
     }
 
-    public ProcDefDao getProcDefDao(){
-        return getDaoFactory().getDao(ProcDefDao.class);
+    public ProcDefRepoistory getProcDefDao(){
+        return getDaoFactory().getDao(ProcDefRepoistory.class);
     }
-    public TaskDefDao getTaskDefDao(){
-        return getDaoFactory().getDao(TaskDefDao.class);
-    }
-
-    public FlowDefDao getFlowDefDao(){
-        return getDaoFactory().getDao(FlowDefDao.class);
+    public TaskDefRepoistory getTaskDefDao(){
+        return getDaoFactory().getDao(TaskDefRepoistory.class);
     }
 
-    public ProcInstDao getProcInstDao(){
-        return getDaoFactory().getDao(ProcInstDao.class);
+    public FlowDefRepoistory getFlowDefDao(){
+        return getDaoFactory().getDao(FlowDefRepoistory.class);
     }
 
-    public TaskInstDao getTaskInstDao(){
-        return getDaoFactory().getDao(TaskInstDao.class);
+    public ProcInstRepoistory getProcInstDao(){
+        return getDaoFactory().getDao(ProcInstRepoistory.class);
+    }
+
+    public TaskInstRepoistory getTaskInstDao(){
+        return getDaoFactory().getDao(TaskInstRepoistory.class);
     }
 
 }

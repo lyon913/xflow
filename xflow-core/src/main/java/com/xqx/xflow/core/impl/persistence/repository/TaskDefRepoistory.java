@@ -1,4 +1,4 @@
-package com.xqx.xflow.core.impl.persistence.dao;
+package com.xqx.xflow.core.impl.persistence.repository;
 
 import com.xqx.xflow.core.impl.enums.TaskType;
 import com.xqx.xflow.core.impl.persistence.entity.XflTaskDef;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Lyon on 2017/2/14.
  */
-public class TaskDefDao extends AbstractDao<QXflTaskDef, XflTaskDef, String> {
+public class TaskDefRepoistory extends AbstractRepoistory<QXflTaskDef, XflTaskDef, String> {
     public XflTaskDef findStartTask(String procDefId) {
         return getQueryFactory().selectFrom(qType).where(qType.procDefId.eq(procDefId).and(qType.taskType.eq(TaskType.START.toString()))).fetchOne();
     }
@@ -19,6 +19,6 @@ public class TaskDefDao extends AbstractDao<QXflTaskDef, XflTaskDef, String> {
         QXflTaskDef t = QXflTaskDef.xflTaskDef;
         QXflFlowDef f = QXflFlowDef.xflFlowDef;
 
-        return getQueryFactory().selectFrom(t).innerJoin(f).on(t.id.eq(f.targetTdefId)).where(f.sourceTdefId.eq(taskDefId)).orderBy(t.).fetch();
+        return getQueryFactory().selectFrom(t).innerJoin(f).on(t.id.eq(f.targetTdefId)).where(f.sourceTdefId.eq(taskDefId)).orderBy().fetch();
     }
 }

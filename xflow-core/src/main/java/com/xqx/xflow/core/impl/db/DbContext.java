@@ -2,14 +2,14 @@ package com.xqx.xflow.core.impl.db;
 
 import com.querydsl.sql.SQLQueryFactory;
 import com.xqx.xflow.core.impl.cfg.IdGenerator;
-import com.xqx.xflow.core.impl.persistence.dao.AbstractDao;
+import com.xqx.xflow.core.impl.persistence.repository.AbstractRepoistory;
 
-public class DaoFactory {
+public class DbContext {
     private IdGenerator idGenerator;
 
     private SQLQueryFactory queryFactory;
 
-    public <T extends AbstractDao> T getDao(Class<T> cls){
+    public <T extends AbstractRepoistory> T getDao(Class<T> cls){
         try {
             T dao = cls.newInstance();
             initDao(dao);
@@ -20,7 +20,7 @@ public class DaoFactory {
 
     }
 
-    private <T extends AbstractDao> void initDao(T dao){
+    private <T extends AbstractRepoistory> void initDao(T dao){
         dao.setIdGenerator(idGenerator);
         dao.setQueryFactory(queryFactory);
     }

@@ -1,4 +1,4 @@
-package com.xqx.xflow.core.impl.persistence.dao;
+package com.xqx.xflow.core.impl.persistence.repository;
 
 import com.querydsl.core.types.Expression;
 import com.querydsl.core.types.Ops;
@@ -20,7 +20,7 @@ import java.lang.reflect.ParameterizedType;
 /**
  * Created by Lyon on 2017/2/14.
  */
-public class AbstractDao<Q extends RelationalPathBase<E>, E extends PersistentObject, T extends Serializable> {
+public class AbstractRepoistory<Q extends RelationalPathBase<E>, E extends PersistentObject, T extends Serializable> {
     protected Q qType;
     protected SQLQueryFactory queryFactory;
     protected IdGenerator idGenerator;
@@ -28,7 +28,7 @@ public class AbstractDao<Q extends RelationalPathBase<E>, E extends PersistentOb
     private static final String VARIABLE = "t";
     private static final String ID_FIELD = "id";
 
-    public AbstractDao(){
+    public AbstractRepoistory(){
         this.qType = getQTypeInstance();
     }
 

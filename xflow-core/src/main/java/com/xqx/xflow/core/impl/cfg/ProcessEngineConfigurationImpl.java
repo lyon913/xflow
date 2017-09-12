@@ -10,7 +10,8 @@ import com.xqx.xflow.core.impl.ProcessEngineImpl;
 import com.xqx.xflow.core.impl.RepositoryServiceImpl;
 import com.xqx.xflow.core.impl.RuntimeServiceImpl;
 import com.xqx.xflow.core.impl.TaskServiceImpl;
-import com.xqx.xflow.core.impl.db.DaoFactory;
+import com.xqx.xflow.core.impl.context.Context;
+import com.xqx.xflow.core.impl.db.DbContext;
 import com.xqx.xflow.core.impl.db.UuidGenerator;
 
 /**
@@ -23,7 +24,7 @@ public class ProcessEngineConfigurationImpl extends ProcessEngineConfiguration {
 
     protected IdGenerator idGenerator;
     protected SQLQueryFactory sqlQueryFactory;
-    protected DaoFactory daoFactory;
+    protected DbContext dbContext;
 
 
 
@@ -37,7 +38,7 @@ public class ProcessEngineConfigurationImpl extends ProcessEngineConfiguration {
         initDataSource();
         initIdGenerator();
         initSqlQueryFactory();
-        initDaoFactory();
+        initDbContext();
         initServices();
     }
 
@@ -89,25 +90,26 @@ public class ProcessEngineConfigurationImpl extends ProcessEngineConfiguration {
         }
     }
 
-    protected void initDaoFactory(){
-        if(daoFactory == null){
-            daoFactory = new DaoFactory();
-            daoFactory.setIdGenerator(idGenerator);
-            daoFactory.setQueryFactory(sqlQueryFactory);
+    protected void initDbContext(){
+        if(dbContext == null){
+            dbContext = new DbContext();
+            dbContext.setIdGenerator(idGenerator);
+            dbContext.setQueryFactory(sqlQueryFactory);
+            Context.setDbContext(dbContext);
         }
     }
 
     protected void initServices(){
         if(repositoryService == null){
-            repositoryService = new RepositoryServiceImpl(daoFactory);
+            repositoryService = new RepositoryServiceImpl(dbContext);
         }
 
         if(taskService == null){
-            taskService = new TaskServiceImpl(daoFactory);
+            taskService = new TaskServiceImpl(dbContext);
         }
 
         if(runtimeService == null){
-            runtimeService = new RuntimeServiceImpl(daoFactory);
+            runtimeService = new RuntimeServiceImpl(dbContext);
         }
     }
 

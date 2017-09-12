@@ -1,8 +1,8 @@
 package com.xqx.xflow.core.impl;
 
 import com.xqx.xflow.core.RepositoryService;
-import com.xqx.xflow.core.impl.db.DaoFactory;
-import com.xqx.xflow.core.impl.persistence.dao.ProcDefDao;
+import com.xqx.xflow.core.impl.db.DbContext;
+import com.xqx.xflow.core.impl.persistence.repository.ProcDefRepoistory;
 import com.xqx.xflow.core.impl.persistence.entity.XflProcDef;
 
 /**
@@ -10,10 +10,10 @@ import com.xqx.xflow.core.impl.persistence.entity.XflProcDef;
  */
 public class RepositoryServiceImpl extends ServiceImpl implements RepositoryService {
 
-    private ProcDefDao procDefDao;
+    private ProcDefRepoistory procDefDao;
 
-    public RepositoryServiceImpl(DaoFactory daoFactory){
-        this.procDefDao = daoFactory.getDao(ProcDefDao.class);
+    public RepositoryServiceImpl(DbContext daoFactory){
+        this.procDefDao = daoFactory.getDao(ProcDefRepoistory.class);
     }
 
     public void createProcDef(XflProcDef processDef) {

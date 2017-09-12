@@ -3,10 +3,10 @@ package com.xqx.xflow.core.impl;
 import com.querydsl.sql.SQLQuery;
 import com.xqx.xflow.core.RuntimeService;
 import com.xqx.xflow.core.XflowException;
-import com.xqx.xflow.core.impl.db.DaoFactory;
-import com.xqx.xflow.core.impl.persistence.dao.ProcDefDao;
-import com.xqx.xflow.core.impl.persistence.dao.ProcInstDao;
-import com.xqx.xflow.core.impl.persistence.dao.TaskDefDao;
+import com.xqx.xflow.core.impl.db.DbContext;
+import com.xqx.xflow.core.impl.persistence.repository.ProcDefRepoistory;
+import com.xqx.xflow.core.impl.persistence.repository.ProcInstRepoistory;
+import com.xqx.xflow.core.impl.persistence.repository.TaskDefRepoistory;
 import com.xqx.xflow.core.impl.persistence.entity.XflProcDef;
 import com.xqx.xflow.core.impl.persistence.entity.XflProcInst;
 import com.xqx.xflow.core.impl.persistence.entity.XflTaskDef;
@@ -17,13 +17,13 @@ import com.xqx.xflow.core.impl.persistence.querydsl.QXflProcInst;
  */
 public class RuntimeServiceImpl extends ServiceImpl implements RuntimeService {
 
-    private ProcDefDao procDefDao;
-    private TaskDefDao taskDefDao;
-    private ProcInstDao procInstDao;
+    private ProcDefRepoistory procDefDao;
+    private TaskDefRepoistory taskDefDao;
+    private ProcInstRepoistory procInstDao;
 
-    public RuntimeServiceImpl(DaoFactory daoFactory){
-        this.procDefDao = daoFactory.getDao(ProcDefDao.class);
-        this.procInstDao = daoFactory.getDao(ProcInstDao.class);
+    public RuntimeServiceImpl(DbContext daoFactory){
+        this.procDefDao = daoFactory.getDao(ProcDefRepoistory.class);
+        this.procInstDao = daoFactory.getDao(ProcInstRepoistory.class);
     }
 
     @Override

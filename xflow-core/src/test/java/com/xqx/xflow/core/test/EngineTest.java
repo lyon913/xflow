@@ -1,21 +1,13 @@
 package com.xqx.xflow.core.test;
 
-import com.querydsl.sql.Configuration;
 import com.querydsl.sql.MySQLTemplates;
-import com.querydsl.sql.SQLQueryFactory;
 import com.querydsl.sql.SQLTemplates;
-import com.querydsl.sql.spring.SpringConnectionProvider;
 import com.xqx.xflow.core.ProcessEngine;
 import com.xqx.xflow.core.ProcessEngineConfiguration;
 import com.xqx.xflow.core.RepositoryService;
 import com.xqx.xflow.core.RuntimeService;
 import com.xqx.xflow.core.impl.cfg.ProcessEngineConfigurationImpl;
-import com.xqx.xflow.core.impl.db.DaoFactory;
-import com.xqx.xflow.core.impl.db.UuidGenerator;
-import com.xqx.xflow.core.impl.persistence.dao.ProcDefDao;
 import com.xqx.xflow.core.impl.persistence.entity.XflProcDef;
-import org.joda.time.DateTime;
-import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
