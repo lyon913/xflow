@@ -1,7 +1,11 @@
 package com.xqx.xflow.core.impl.persistence.entity;
 
 import javax.annotation.Generated;
+
+import com.xqx.xflow.core.impl.context.Context;
 import com.xqx.xflow.core.impl.db.PersistentObject;
+
+import java.util.List;
 
 /**
  * XflTaskDef is a Querydsl bean type
@@ -24,6 +28,10 @@ public class XflTaskDef implements PersistentObject {
     private String taskDesc;
 
     private String taskType;
+
+    public List<XflFlowDef> findOutFlows(){
+        return Context.getDbContext().getFlowDefRepository().findBySourceId(this.getId());
+    }
 
     public String getCandidateGroup() {
         return candidateGroup;

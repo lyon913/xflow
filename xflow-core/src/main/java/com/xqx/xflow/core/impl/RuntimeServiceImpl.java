@@ -3,10 +3,9 @@ package com.xqx.xflow.core.impl;
 import com.querydsl.sql.SQLQuery;
 import com.xqx.xflow.core.RuntimeService;
 import com.xqx.xflow.core.XflowException;
-import com.xqx.xflow.core.impl.db.DbContext;
-import com.xqx.xflow.core.impl.persistence.repository.ProcDefRepoistory;
-import com.xqx.xflow.core.impl.persistence.repository.ProcInstRepoistory;
-import com.xqx.xflow.core.impl.persistence.repository.TaskDefRepoistory;
+import com.xqx.xflow.core.impl.persistence.repository.ProcDefRepository;
+import com.xqx.xflow.core.impl.persistence.repository.ProcInstRepository;
+import com.xqx.xflow.core.impl.persistence.repository.TaskDefRepository;
 import com.xqx.xflow.core.impl.persistence.entity.XflProcDef;
 import com.xqx.xflow.core.impl.persistence.entity.XflProcInst;
 import com.xqx.xflow.core.impl.persistence.entity.XflTaskDef;
@@ -17,29 +16,29 @@ import com.xqx.xflow.core.impl.persistence.querydsl.QXflProcInst;
  */
 public class RuntimeServiceImpl extends ServiceImpl implements RuntimeService {
 
-    private ProcDefRepoistory procDefDao;
-    private TaskDefRepoistory taskDefDao;
-    private ProcInstRepoistory procInstDao;
+    private ProcDefRepository procDefRepository;
+    private TaskDefRepository taskDefRepository;
+    private ProcInstRepository procInstRepository;
 
-    public RuntimeServiceImpl(DbContext daoFactory){
-        this.procDefDao = daoFactory.getDao(ProcDefRepoistory.class);
-        this.procInstDao = daoFactory.getDao(ProcInstRepoistory.class);
+    public RuntimeServiceImpl(){
+        this.procDefRepository = getDbContext().getProcDefRepository();
+        this.procInstRepository = getDbContext().getProcInstRepository();
+        this.taskDefRepository = getDbContext().getTaskDefRepository();
     }
 
     @Override
-    public XflProcInst startProcessInstanceByKey(String procDefKey, String businessKey, String userId, String userName) {
-
-        FlowProcessor processor = new FlowProcessor();
-        processor.setUserInfo(userId,userName);
-
-        XflProcDef procDef = procDefDao.selectByProcKey(procDefKey);
-        if(procDef == null) {
-            throw new XflowException("XflProcDef not found:procKey=" + procDefKey);
+    public XflProcInst startProcessInstanceByKey(String procDefKey, String businessKey) {
+        XflProcDef procDef = procDefRepository.selectByProcKey(procDefKey);
+        if(procDef == null){
+            throw new XflowException("procDefKey not found:"+procDefKey);
         }
-        XflProcInst inst = processor.createProcInst(procDef,businessKey);
-        procInstDao.insert(inst);
+        XflProcInst inst = procDef.createProcInst(businessKey);
+        XflTaskDef startNodeDef = procDef.findStartNode();
+        if(startNodeDef == null){
+            throw new XflowException("Start node not found:procDefKey:"+procDefKey);
+        }
 
-        XflTaskDef start = taskDefDao.findStartTask(inst.getProcDefId());
+        startNodeDef.findOutFlows();
         return inst;
     }
 
@@ -54,6 +53,6 @@ public class RuntimeServiceImpl extends ServiceImpl implements RuntimeService {
     @Override
     public SQLQuery<XflProcInst> createProcessInstanceQuery() {
         QXflProcInst qXflProcInst = QXflProcInst.xflProcInst;
-        return getDaoFactory().getQueryFactory().selectFrom(qXflProcInst);
+        return getDbContext().getQueryFactory().selectFrom(qXflProcInst);
     }
 }

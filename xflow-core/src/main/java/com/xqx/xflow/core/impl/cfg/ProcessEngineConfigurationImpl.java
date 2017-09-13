@@ -92,24 +92,22 @@ public class ProcessEngineConfigurationImpl extends ProcessEngineConfiguration {
 
     protected void initDbContext(){
         if(dbContext == null){
-            dbContext = new DbContext();
-            dbContext.setIdGenerator(idGenerator);
-            dbContext.setQueryFactory(sqlQueryFactory);
+            dbContext = new DbContext(idGenerator, sqlQueryFactory);
             Context.setDbContext(dbContext);
         }
     }
 
     protected void initServices(){
         if(repositoryService == null){
-            repositoryService = new RepositoryServiceImpl(dbContext);
+            repositoryService = new RepositoryServiceImpl();
         }
 
         if(taskService == null){
-            taskService = new TaskServiceImpl(dbContext);
+            taskService = new TaskServiceImpl();
         }
 
         if(runtimeService == null){
-            runtimeService = new RuntimeServiceImpl(dbContext);
+            runtimeService = new RuntimeServiceImpl();
         }
     }
 

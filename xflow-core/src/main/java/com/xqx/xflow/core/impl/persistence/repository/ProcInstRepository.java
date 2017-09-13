@@ -6,6 +6,6 @@ import com.xqx.xflow.core.impl.persistence.querydsl.QXflProcInst;
 /**
  * Created by Lyon on 2017/2/14.
  */
-public class ProcInstRepoistory extends AbstractRepoistory<QXflProcInst, XflProcInst, String> {
+public class ProcInstRepository extends AbstractRepository<QXflProcInst, XflProcInst, String> {
 
 }

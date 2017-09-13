@@ -108,7 +108,8 @@
                     <jdbcPassword>xqx1234</jdbcPassword>
                     <packageName>com.xqx.xflow.core.impl.persistence.querydsl</packageName>
                     <beanPackageName>com.xqx.xflow.core.impl.persistence.entity</beanPackageName>
-                    <exportBeans>true</exportBeans>
+                    <!-- 不自动生成entity bean（entity中包含领域模型方法） -->
+                    <exportBeans>false</exportBeans>
                     <exportViews>false</exportViews>
                     <beanInterfaces>com.xqx.xflow.core.impl.db.PersistentObject</beanInterfaces>
                     <customTypes>

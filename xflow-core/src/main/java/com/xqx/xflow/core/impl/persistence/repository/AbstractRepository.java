@@ -20,7 +20,7 @@ import java.lang.reflect.ParameterizedType;
 /**
  * Created by Lyon on 2017/2/14.
  */
-public class AbstractRepoistory<Q extends RelationalPathBase<E>, E extends PersistentObject, T extends Serializable> {
+public class AbstractRepository<Q extends RelationalPathBase<E>, E extends PersistentObject, T extends Serializable> {
     protected Q qType;
     protected SQLQueryFactory queryFactory;
     protected IdGenerator idGenerator;
@@ -28,7 +28,7 @@ public class AbstractRepoistory<Q extends RelationalPathBase<E>, E extends Persi
     private static final String VARIABLE = "t";
     private static final String ID_FIELD = "id";
 
-    public AbstractRepoistory(){
+    public AbstractRepository(){
         this.qType = getQTypeInstance();
     }
 
