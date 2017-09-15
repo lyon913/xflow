@@ -4,6 +4,8 @@ import javax.annotation.Generated;
 
 import com.xqx.xflow.core.impl.context.Context;
 import com.xqx.xflow.core.impl.db.PersistentObject;
+import com.xqx.xflow.core.impl.util.DateUtil;
+import org.joda.time.DateTime;
 
 import java.util.List;
 
@@ -30,7 +32,18 @@ public class XflTaskDef implements PersistentObject {
     private String taskType;
 
     public List<XflFlowDef> findOutFlows(){
-        return Context.getDbContext().getFlowDefRepository().findBySourceId(this.getId());
+        return Context.getDbContext().getFlowDefRepository().selectBySourceId(this.getId());
+    }
+
+    public XflTaskInst createTaskInstance(XflProcInst procInst){
+        XflTaskInst inst = new XflTaskInst();
+        inst.setProcInstId(procInst.getId());
+        inst.setTaskDefId(this.getId());
+        inst.setStartTime(new DateTime());
+        inst.setDueDate(DateUtil.parsePeriod(this.getDueDate()));
+        inst.setActive(true);
+        Context.getDbContext().getTaskInstRepository().insert(inst);
+        return inst;
     }
 
     public String getCandidateGroup() {

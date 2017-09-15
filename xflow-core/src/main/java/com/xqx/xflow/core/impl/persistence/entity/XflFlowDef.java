@@ -1,6 +1,8 @@
 package com.xqx.xflow.core.impl.persistence.entity;
 
 import javax.annotation.Generated;
+
+import com.xqx.xflow.core.impl.context.Context;
 import com.xqx.xflow.core.impl.db.PersistentObject;
 
 /**
@@ -20,6 +22,10 @@ public class XflFlowDef implements PersistentObject {
     private String sourceTdefId;
 
     private String targetTdefId;
+
+    public XflTaskDef getTargetTaskDef(){
+        return Context.getDbContext().getTaskDefRepository().selectById(this.getTargetTdefId());
+    }
 
     public String getConditionExp() {
         return conditionExp;
