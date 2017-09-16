@@ -6,6 +6,6 @@ import com.xqx.xflow.core.impl.persistence.querydsl.QXflVariable;
 /**
  * Created by Lyon on 2017/2/14.
  */
-public class VariableRepoistory extends AbstractRepoistory<QXflVariable, XflVariable, String> {
+public class VariableRepository extends AbstractRepository<QXflVariable, XflVariable, String> {
 
 }

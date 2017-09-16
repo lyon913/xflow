@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by Lyon on 2017/2/14.
  */
-public class TaskDefRepoistory extends AbstractRepoistory<QXflTaskDef, XflTaskDef, String> {
+public class TaskDefRepository extends AbstractRepository<QXflTaskDef, XflTaskDef, String> {
     public XflTaskDef findStartTask(String procDefId) {
         return getQueryFactory().selectFrom(qType).where(qType.procDefId.eq(procDefId).and(qType.taskType.eq(TaskType.START.toString()))).fetchOne();
     }

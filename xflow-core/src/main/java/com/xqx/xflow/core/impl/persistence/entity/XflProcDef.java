@@ -1,7 +1,13 @@
 package com.xqx.xflow.core.impl.persistence.entity;
 
 import javax.annotation.Generated;
+
+import com.xqx.xflow.core.impl.Authentication;
+import com.xqx.xflow.core.impl.context.Context;
 import com.xqx.xflow.core.impl.db.PersistentObject;
+import com.xqx.xflow.core.impl.persistence.repository.TaskDefRepository;
+import com.xqx.xflow.core.impl.util.DateUtil;
+import org.joda.time.DateTime;
 
 /**
  * XflProcDef is a Querydsl bean type
@@ -24,6 +30,33 @@ public class XflProcDef implements PersistentObject {
     private String procKey;
 
     private Boolean valid;
+
+
+
+    public XflProcInst createProcInst(String businessKey){
+        XflProcInst inst = new XflProcInst();
+        inst.setProcDefId(this.getId());
+        inst.setBusinessKey(businessKey);
+        inst.setStartUserId(Authentication.getUserId());
+        inst.setStartUserName(Authentication.getUserName());
+        inst.setProcDefId(this.getId());
+        inst.setDueDate(DateUtil.parsePeriod(this.getDueDate()));
+        inst.setStartTime(new DateTime());
+        inst.setActive(true);
+
+        Context.getDbContext().getProcInstRepository().insert(inst);
+        return inst;
+    }
+
+    public XflTaskDef findStartNode(){
+        TaskDefRepository taskDefRepo = Context.getDbContext().getTaskDefRepository();
+        return taskDefRepo.findStartTask(this.getId());
+    }
+
+
+
+
+    //  getters n setters //
 
     public String getCandidateGroup() {
         return candidateGroup;

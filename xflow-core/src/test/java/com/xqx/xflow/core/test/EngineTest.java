@@ -6,6 +6,7 @@ import com.xqx.xflow.core.ProcessEngine;
 import com.xqx.xflow.core.ProcessEngineConfiguration;
 import com.xqx.xflow.core.RepositoryService;
 import com.xqx.xflow.core.RuntimeService;
+import com.xqx.xflow.core.impl.Authentication;
 import com.xqx.xflow.core.impl.cfg.ProcessEngineConfigurationImpl;
 import com.xqx.xflow.core.impl.persistence.entity.XflProcDef;
 import org.junit.Test;
@@ -33,6 +34,7 @@ public class EngineTest {
 
         //初始化事务
         TransactionStatus status = tm.getTransaction(new DefaultTransactionDefinition(TransactionDefinition.PROPAGATION_REQUIRED));
+        Authentication.setAuthenticatedUserInfo("test1","测试用户1");
 
         ProcessEngineConfiguration config = new ProcessEngineConfigurationImpl();
         config.setDatabaseId("MySQL");
@@ -45,11 +47,13 @@ public class EngineTest {
         String name = UUID.randomUUID().toString();
         procDef.setName(name);
         procDef.setProcKey(name);
+        procDef.setValid(true);
 
         rs.createProcDef(procDef);
 
         RuntimeService runtimeService = engine.getRuntimeService();
-        runtimeService.startProcessInstanceByKey(name,"test-1","user1","user1");
+        runtimeService.startProcessInstanceByKey(name,"test-1");
+
         //提交
         tm.commit(status);
 

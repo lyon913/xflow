@@ -2,9 +2,9 @@ package com.xqx.xflow.core.impl;
 
 import com.google.common.base.Strings;
 import com.xqx.xflow.core.XflowException;
-import com.xqx.xflow.core.impl.persistence.repository.ProcDefRepoistory;
-import com.xqx.xflow.core.impl.persistence.repository.ProcInstRepoistory;
-import com.xqx.xflow.core.impl.persistence.repository.TaskDefRepoistory;
+import com.xqx.xflow.core.impl.persistence.repository.ProcDefRepository;
+import com.xqx.xflow.core.impl.persistence.repository.ProcInstRepository;
+import com.xqx.xflow.core.impl.persistence.repository.TaskDefRepository;
 import com.xqx.xflow.core.impl.persistence.entity.XflProcDef;
 import com.xqx.xflow.core.impl.persistence.entity.XflProcInst;
 import org.joda.time.DateTime;
@@ -15,9 +15,9 @@ public class FlowProcessor {
     public String userId;
     public String userName;
 
-    private ProcDefRepoistory procDefDao;
-    private TaskDefRepoistory taskDefDao;
-    private ProcInstRepoistory procInstDao;
+    private ProcDefRepository procDefRepository;
+    private TaskDefRepository taskDefRepository;
+    private ProcInstRepository procInstRepository;
 
 
 
