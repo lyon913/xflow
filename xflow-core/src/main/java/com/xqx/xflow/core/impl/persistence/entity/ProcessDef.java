@@ -1,7 +1,5 @@
 package com.xqx.xflow.core.impl.persistence.entity;
 
-import org.hibernate.annotations.Type;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Index;
