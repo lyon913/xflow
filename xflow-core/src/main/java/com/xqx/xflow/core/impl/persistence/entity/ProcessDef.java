@@ -9,9 +9,14 @@ import javax.persistence.Table;
  * Created by Lyon on 2017/9/16.
  */
 @Entity
-@Table(name = "XFL_PROCESS_DEF", indexes = {@Index(name="IDX_PROC_DEF_KEY", columnList = "KEY_"),@Index(name="IDX_PROC_DEF_NAME", columnList = "NAME_")})
-public class ProcessDef extends BaseIdEntity{
-    @Column(name = "KEY_", length = 50, nullable = false,unique = true)
+@Table(
+        name = "XFL_PROCESS_DEF",
+        indexes = {
+                @Index(name = "IDX_PROC_DEF_KEY", columnList = "KEY_"),
+                @Index(name = "IDX_PROC_DEF_NAME", columnList = "NAME_")
+        })
+public class ProcessDef extends BaseIdEntity {
+    @Column(name = "KEY_", length = 50, nullable = false, unique = true)
     private String key;
 
     @Column(name = "NAME_", length = 200, nullable = false)
@@ -31,6 +36,9 @@ public class ProcessDef extends BaseIdEntity{
 
     @Column(name = "DESC_", length = 500)
     private String desc;
+
+    @Column(name = "VER_")
+    private Long ver;
 
     public String getKey() {
         return key;
@@ -86,5 +94,13 @@ public class ProcessDef extends BaseIdEntity{
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public Long getVer() {
+        return ver;
+    }
+
+    public void setVer(Long ver) {
+        this.ver = ver;
     }
 }

@@ -82,6 +82,11 @@
                 <artifactId>querydsl-sql-spring</artifactId>
                 <version>${querydsl.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.sormula</groupId>
+                <artifactId>sormula</artifactId>
+                <version>4.2</version>
+            </dependency>
 
 
         </dependencies>

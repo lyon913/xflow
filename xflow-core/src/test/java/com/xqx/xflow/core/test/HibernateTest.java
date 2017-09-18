@@ -19,13 +19,14 @@ import javax.sql.DataSource;
 
 import java.util.Map;
 
-public class Main {
+public class HibernateTest {
     private static final SessionFactory ourSessionFactory;
 
     static {
         try {
             System.setProperty("hibernate.dialect.storage_engine", "innodb");
-            DataSource ds = new DriverManagerDataSource("jdbc:mysql://127.0.0.1/xflow", "xflow", "xqx1234");
+            //DataSource ds = new DriverManagerDataSource("jdbc:mysql://127.0.0.1/xflow", "xflow", "xqx1234");
+            DataSource ds = new DriverManagerDataSource("jdbc:sqlserver://127.0.0.1:1433;databaseName=xflow;", "sa", "xqx123456@");
             Configuration configuration = new Configuration();
             configuration.configure("xflow-hibernate.cfg.xml");
             configuration.getStandardServiceRegistryBuilder().applySetting(Environment.DATASOURCE, ds);
