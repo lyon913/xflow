@@ -1,8 +1,6 @@
 package com.xqx.xflow.core.impl.persistence.entity;
 
 
-import com.xqx.xflow.core.impl.context.ExecutionContext;
-
 import javax.persistence.*;
 
 @Entity
