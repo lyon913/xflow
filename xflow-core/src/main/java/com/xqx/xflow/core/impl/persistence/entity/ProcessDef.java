@@ -16,25 +16,25 @@ import javax.persistence.Table;
                 @Index(name = "IDX_PROC_DEF_NAME", columnList = "NAME_")
         })
 public class ProcessDef extends BaseIdEntity {
-    @Column(name = "KEY_", length = 50, nullable = false, unique = true)
+    @Column(name = "KEY_", length = 255, nullable = false, unique = true)
     private String key;
 
-    @Column(name = "NAME_", length = 200, nullable = false)
+    @Column(name = "NAME_", length = 255, nullable = false)
     private String name;
 
-    @Column(name = "CATEGORY_", length = 50)
+    @Column(name = "CATEGORY_", length = 255)
     private String category;
 
-    @Column(name = "CANDIDATE_GROUP_", length = 50)
+    @Column(name = "CANDIDATE_GROUP_", length = 500)
     private String candidateGroup;
 
-    @Column(name = "CANDIDATE_USER_", length = 50)
+    @Column(name = "CANDIDATE_USER_", length = 500)
     private String candidateUser;
 
-    @Column(name = "DUE_DATE_", length = 50)
+    @Column(name = "DUE_DATE_", length = 255)
     private String dueDate;
 
-    @Column(name = "DESC_", length = 500)
+    @Column(name = "DESC_", length = 2000)
     private String desc;
 
     @Column(name = "VER_")
