@@ -17,13 +17,23 @@ public abstract class NodeDef extends BaseIdEntity{
     @JoinColumn(name = "PROCESS_DEF_ID_")
     private ProcessDef processDef;
 
-    @Column(name = "NAME_" , length = 100, nullable = false)
+    @Column(name = "NAME_" , length = 255, nullable = false)
     private String name;
+
+
 
     abstract public void execute();
 
-    abstract public void enter();
+    public void enter(){
 
-    abstract public void leave();
+    }
+
+    private Activity createActivity(){
+        return null;
+    }
+
+    public void leave(Transition transition){
+        transition.take();
+    }
 
 }

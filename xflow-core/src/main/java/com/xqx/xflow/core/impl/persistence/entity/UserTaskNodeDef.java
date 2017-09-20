@@ -6,8 +6,8 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue(NodeType.START)
-public class StartNodeDef extends NodeDef{
+@DiscriminatorValue(NodeType.USER_TASK)
+public class UserTaskNodeDef extends NodeDef{
     @Override
     public void execute() {
 
