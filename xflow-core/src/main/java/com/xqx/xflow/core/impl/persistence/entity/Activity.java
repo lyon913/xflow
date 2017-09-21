@@ -37,19 +37,19 @@ public class Activity extends BaseIdEntity{
 
 
     @Column(name = "START_TIME_")
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
     private DateTime startTime;
 
     @Column(name = "CLAIM_TIME_")
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
     private DateTime claimTime;
 
     @Column(name = "END_TIME_")
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
     private DateTime endTime;
 
     @Column(name = "DUE_DATE_")
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
     private DateTime dueDate;
 
     @Column(name = "DURATION_")

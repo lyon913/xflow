@@ -2,6 +2,7 @@ package com.xqx.xflow.core.impl.persistence.entity;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(
@@ -20,7 +21,32 @@ public abstract class NodeDef extends BaseIdEntity{
     @Column(name = "NAME_" , length = 255, nullable = false)
     private String name;
 
+    @OneToMany(mappedBy="sourceNode")
+    private List<Transition> transitions;
 
+    public ProcessDef getProcessDef() {
+        return processDef;
+    }
+
+    public void setProcessDef(ProcessDef processDef) {
+        this.processDef = processDef;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Transition> getTransitions() {
+        return transitions;
+    }
+
+    public void setTransitions(List<Transition> transitions) {
+        this.transitions = transitions;
+    }
 
     abstract public void execute();
 

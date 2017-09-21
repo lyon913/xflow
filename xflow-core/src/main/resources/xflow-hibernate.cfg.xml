@@ -10,6 +10,7 @@
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
         <property name="dialect">org.hibernate.dialect.SQLServer2008Dialect</property>
-        <mapping class="com.xqx.xflow.core.impl.persistence.entity.ProcessDef" />
+        <property name="hibernate.archive.autodetection">class</property>
+        <mapping class="com.xqx.xflow.core.impl.persistence.entity.*" />
     </session-factory>
 </hibernate-configuration>

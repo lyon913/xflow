@@ -25,11 +25,11 @@ public class ProcessDef extends BaseIdEntity {
     @Column(name = "CATEGORY_", length = 255)
     private String category;
 
-    @Column(name = "CANDIDATE_GROUP_", length = 500)
-    private String candidateGroup;
+    @Column(name = "CANDIDATE_GROUPS_", length = 500)
+    private String candidateGroups;
 
-    @Column(name = "CANDIDATE_USER_", length = 500)
-    private String candidateUser;
+    @Column(name = "CANDIDATE_USERS_", length = 500)
+    private String candidateUsers;
 
     @Column(name = "DUE_DATE_", length = 255)
     private String dueDate;
@@ -64,20 +64,20 @@ public class ProcessDef extends BaseIdEntity {
         this.category = category;
     }
 
-    public String getCandidateGroup() {
-        return candidateGroup;
+    public String getCandidateGroups() {
+        return candidateGroups;
     }
 
-    public void setCandidateGroup(String candidateGroup) {
-        this.candidateGroup = candidateGroup;
+    public void setCandidateGroups(String candidateGroups) {
+        this.candidateGroups = candidateGroups;
     }
 
-    public String getCandidateUser() {
-        return candidateUser;
+    public String getCandidateUsers() {
+        return candidateUsers;
     }
 
-    public void setCandidateUser(String candidateUser) {
-        this.candidateUser = candidateUser;
+    public void setCandidateUsers(String candidateUsers) {
+        this.candidateUsers = candidateUsers;
     }
 
     public String getDueDate() {

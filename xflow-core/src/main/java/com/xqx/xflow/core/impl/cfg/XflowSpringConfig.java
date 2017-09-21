@@ -6,7 +6,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
 import javax.sql.DataSource;
 
-@Configuration
+
 public class XflowSpringConfig {
 
     private DataSource dataSource;
@@ -19,7 +19,6 @@ public class XflowSpringConfig {
         this.dataSource = dataSource;
     }
 
-    @Bean("xflSessionFactory")
     public LocalSessionFactoryBean buildSessionFactory(){
         LocalSessionFactoryBean bean = new LocalSessionFactoryBean();
         bean.setDataSource(dataSource);

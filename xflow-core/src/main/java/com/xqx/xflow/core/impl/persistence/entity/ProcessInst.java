@@ -24,14 +24,14 @@ public class ProcessInst extends BaseIdEntity {
      * 流程启动时间
      */
     @Column(name = "START_TIME_", nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
     private DateTime startTime;
 
     /**
      * 流程结束时间
      */
     @Column(name = "END_TIME_")
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
     private DateTime endTime;
 
     /**
@@ -68,7 +68,7 @@ public class ProcessInst extends BaseIdEntity {
      * 流程预定办结期限（判断是否超期）
      */
     @Column(name = "DUE_DATE_")
-    @Temporal(TemporalType.TIMESTAMP)
+    //@Temporal(TemporalType.TIMESTAMP)
     private DateTime dueDate;
 
     /**
