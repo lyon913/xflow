@@ -1,10 +1,14 @@
 package com.xqx.xflow.core.impl.persistence.entity;
 
+import com.xqx.xflow.core.XflowException;
 import com.xqx.xflow.core.impl.consts.NodeType;
+import com.xqx.xflow.core.impl.util.DateUtil;
+import org.joda.time.DateTime;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import java.util.List;
 
 @Entity
 @DiscriminatorValue(NodeType.USER_TASK)
@@ -28,12 +32,30 @@ public class UserTaskNodeDef extends NodeDef{
     @Column(name = "DUE_DATE_")
     private String dueDate;
 
-    @Column(name = "IS_ACTIVE_", length = 1)
-    private Boolean isActive;
+    @Override
+    public void execute(Execution execution) {
+        //waiting for user commit task
+    }
+
+    public void commit(Execution execution){
+        List<Transition> transitions = getAvailableTransitions();
+        if(transitions.size() != 1){
+            throw new XflowException("Availible transition number must be 1.");
+        }
+        leave(execution, transitions.get(0));
+    }
 
     @Override
-    public void execute() {
-
+    protected Activity createActivity(ProcessInst processInst) {
+        Activity act = new Activity();
+        act.setActive(true);
+        act.setProcessInst(processInst);
+        act.setNodeDef(this);
+        act.setNodeName(this.getName());
+        act.setStartTime(new DateTime());
+        act.setDueDate(DateUtil.parsePeriod(this.getDueDate()));
+        em.persist(act);
+        return act;
     }
 
     public String getAssigneeId() {
@@ -84,11 +106,5 @@ public class UserTaskNodeDef extends NodeDef{
         this.dueDate = dueDate;
     }
 
-    public Boolean getActive() {
-        return isActive;
-    }
 
-    public void setActive(Boolean active) {
-        isActive = active;
-    }
 }

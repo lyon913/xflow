@@ -1,7 +1,16 @@
 package com.xqx.xflow.core.impl.persistence.entity;
 
 
+import com.xqx.xflow.core.XflowException;
+import org.joda.time.DateTime;
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -11,8 +20,12 @@ import java.util.List;
                 @Index(name = "IDX_ND_PROC_ID",columnList = "PROCESS_DEF_ID_")
         })
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "NODE_TYPE_")
+@DiscriminatorColumn(name = "NODE_TYPE_",length = 64)
 public abstract class NodeDef extends BaseIdEntity{
+
+    @PersistenceContext
+    @Transient
+    protected EntityManager em;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "PROCESS_DEF_ID_")
@@ -48,18 +61,36 @@ public abstract class NodeDef extends BaseIdEntity{
         this.transitions = transitions;
     }
 
-    abstract public void execute();
+    public void enter(Execution execution){
+        Activity act = createActivity(execution.getProcessInst());
+        execution.setActivity(act);
+        em.persist(execution);
 
-    public void enter(){
+        execute(execution);
+    }
+    public void leave(Execution execution, Transition transition){
+        execution.getActivity().end();
+        transition.take(execution);
+    }
+
+    public List<Transition> getAvailableTransitions(){
+        List<Transition> all = getTransitions();
+
+        List<Transition> results = new ArrayList<>();
+        for(Transition t : all){
+            String expStr = t.getConditionExpression();
+            ExpressionParser parser = new SpelExpressionParser();
+            Expression exp = parser.parseExpression(expStr);
+            EvaluationContext ctx = new StandardEvaluationContext();
+            //exp.getValue()
+        }
+
+        return results;
 
     }
 
-    private Activity createActivity(){
-        return null;
-    }
+    protected abstract void execute(Execution execution);
 
-    public void leave(Transition transition){
-        transition.take();
-    }
+    protected abstract Activity createActivity(ProcessInst processInst);
 
 }
