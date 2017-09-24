@@ -47,7 +47,7 @@ public class UserTaskNodeDef extends NodeDef{
 
     @Override
     protected Activity createActivity(ProcessInst processInst) {
-        Activity act = new Activity();
+        UserTaskActivity act = new UserTaskActivity();
         act.setActive(true);
         act.setProcessInst(processInst);
         act.setNodeDef(this);

@@ -2,9 +2,7 @@ package com.xqx.xflow.core.impl.persistence.entity;
 
 import com.xqx.xflow.core.XflowException;
 import com.xqx.xflow.core.impl.consts.NodeType;
-import com.xqx.xflow.core.impl.util.DateUtil;
 import org.joda.time.DateTime;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.List;
@@ -28,7 +26,7 @@ public class StartNodeDef extends NodeDef{
     }
 
     protected Activity createActivity(ProcessInst processInst){
-        Activity act = new Activity();
+        SystemActivity act = new SystemActivity();
         act.setActive(true);
         act.setProcessInst(processInst);
         act.setNodeDef(this);

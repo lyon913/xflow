@@ -1,8 +1,6 @@
 package com.xqx.xflow.core.impl.persistence.entity;
 
 
-import com.xqx.xflow.core.XflowException;
-import org.joda.time.DateTime;
 import org.springframework.expression.EvaluationContext;
 import org.springframework.expression.Expression;
 import org.springframework.expression.ExpressionParser;
@@ -20,7 +18,7 @@ import java.util.List;
                 @Index(name = "IDX_ND_PROC_ID",columnList = "PROCESS_DEF_ID_")
         })
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "NODE_TYPE_",length = 64)
+@DiscriminatorColumn(name = "NODE_TYPE_",length = 64,discriminatorType = DiscriminatorType.STRING)
 public abstract class NodeDef extends BaseIdEntity{
 
     @PersistenceContext
@@ -64,7 +62,7 @@ public abstract class NodeDef extends BaseIdEntity{
     public void enter(Execution execution){
         Activity act = createActivity(execution.getProcessInst());
         execution.setActivity(act);
-        em.persist(execution);
+        em.merge(execution);
 
         execute(execution);
     }

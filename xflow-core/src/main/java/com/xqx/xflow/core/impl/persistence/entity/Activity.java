@@ -6,10 +6,12 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "XFL_ACTIVITY", indexes = {})
-public class Activity extends BaseIdEntity{
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "ACTIVITY_TYPE_", length = 64)
+public abstract class Activity extends BaseIdEntity{
     @PersistenceContext
     @Transient
-    private EntityManager em;
+    protected EntityManager em;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "PROCESS_INST_ID_")
@@ -22,29 +24,12 @@ public class Activity extends BaseIdEntity{
     @Column(name = "NODE_NAME_",length = 255)
     private String nodeName;
 
-    @Column(name = "ASSIGNEE_ID_", length = 64)
-    private String assigneeId;
-
-    @Column(name = "ASSIGNEE_NAME_",length = 255)
-    private String assigneeName;
-
-    @Column(name = "OWNER_ID_", length = 64)
-    private String ownerId;
-
-    @Column(name = "OWNER_NAME_",length = 255)
-    private String ownerName;
 
     @Column(name = "START_TIME_",nullable = false)
     private DateTime startTime;
 
-    @Column(name = "CLAIM_TIME_")
-    private DateTime claimTime;
-
     @Column(name = "END_TIME_")
     private DateTime endTime;
-
-    @Column(name = "DUE_DATE_")
-    private DateTime dueDate;
 
     @Column(name = "DURATION_")
     private Long duration;
@@ -57,6 +42,14 @@ public class Activity extends BaseIdEntity{
         this.setDuration(this.getEndTime().getMillis() - this.getStartTime().getMillis());
         this.setActive(false);
         em.merge(this);
+    }
+
+    public EntityManager getEm() {
+        return em;
+    }
+
+    public void setEm(EntityManager em) {
+        this.em = em;
     }
 
     public ProcessInst getProcessInst() {
@@ -83,38 +76,6 @@ public class Activity extends BaseIdEntity{
         this.nodeName = nodeName;
     }
 
-    public String getAssigneeId() {
-        return assigneeId;
-    }
-
-    public void setAssigneeId(String assigneeId) {
-        this.assigneeId = assigneeId;
-    }
-
-    public String getAssigneeName() {
-        return assigneeName;
-    }
-
-    public void setAssigneeName(String assigneeName) {
-        this.assigneeName = assigneeName;
-    }
-
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
-    }
-
-    public String getOwnerName() {
-        return ownerName;
-    }
-
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
-    }
-
     public DateTime getStartTime() {
         return startTime;
     }
@@ -123,28 +84,12 @@ public class Activity extends BaseIdEntity{
         this.startTime = startTime;
     }
 
-    public DateTime getClaimTime() {
-        return claimTime;
-    }
-
-    public void setClaimTime(DateTime claimTime) {
-        this.claimTime = claimTime;
-    }
-
     public DateTime getEndTime() {
         return endTime;
     }
 
     public void setEndTime(DateTime endTime) {
         this.endTime = endTime;
-    }
-
-    public DateTime getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(DateTime dueDate) {
-        this.dueDate = dueDate;
     }
 
     public Long getDuration() {

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.xqx</groupId>
-    <artifactId>xflow</artifactId>
+    <artifactId>xflow-root</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
@@ -82,13 +82,6 @@
                 <artifactId>querydsl-sql-spring</artifactId>
                 <version>${querydsl.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.sormula</groupId>
-                <artifactId>sormula</artifactId>
-                <version>4.2</version>
-            </dependency>
-
-
         </dependencies>
     </dependencyManagement>
     <build>
