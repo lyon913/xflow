@@ -78,16 +78,22 @@ public class SpELTest extends BaseTest{
         variables.put("falseValue",false);
 
         String expStr = "@booleanExpressionExample.trueValue() == #trueValue";
-        boolean result = spelEvaluator.evaluateBooleanExpression(expStr, variables);
+        boolean result = spelEvaluator.getBooleanValue(expStr, variables);
         Assert.assertEquals(true,result);
 
         String expStr2 = "@booleanExpressionExample.falseValue() == #trueValue";
-        boolean result2 = spelEvaluator.evaluateBooleanExpression(expStr2, variables);
+        boolean result2 = spelEvaluator.getBooleanValue(expStr2, variables);
         Assert.assertEquals(false,result2);
 
         String expStr3 = "#falseValue";
-        boolean result3= spelEvaluator.evaluateBooleanExpression(expStr3, variables);
+        boolean result3= spelEvaluator.getBooleanValue(expStr3, variables);
         Assert.assertEquals(false,result3);
 
+    }
+
+    @Test
+    public void regexTest(){
+        String result = spelEvaluator.checkExpStr("${123aaa}");
+        Assert.assertEquals("123aaa",result);
     }
 }
