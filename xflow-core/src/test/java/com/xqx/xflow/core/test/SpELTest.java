@@ -19,7 +19,7 @@ import org.springframework.expression.spel.support.StandardEvaluationContext;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SpELTest extends BaseTest{
+public class SpELTest extends BaseTest {
 
     @Autowired
     private ApplicationContext applicationContext;
@@ -30,11 +30,11 @@ public class SpELTest extends BaseTest{
     @Test
     public void booleanExpressionTest() {
         ConfigurableBeanFactory beanFactory = null;
-        if(applicationContext instanceof ConfigurableBeanFactory){
-            beanFactory = (ConfigurableBeanFactory)applicationContext;
+        if (applicationContext instanceof ConfigurableBeanFactory) {
+            beanFactory = (ConfigurableBeanFactory) applicationContext;
         }
 
-        if(applicationContext.getAutowireCapableBeanFactory() instanceof ConfigurableBeanFactory){
+        if (applicationContext.getAutowireCapableBeanFactory() instanceof ConfigurableBeanFactory) {
             beanFactory = (ConfigurableBeanFactory) applicationContext.getAutowireCapableBeanFactory();
         }
 
@@ -47,9 +47,9 @@ public class SpELTest extends BaseTest{
         BeanExpressionContext beanEvaluationContext = new BeanExpressionContext(beanFactory, null);
         context.setBeanResolver(new BeanFactoryResolver(beanEvaluationContext.getBeanFactory()));
 
-        Map<String,Object> variables = new HashMap<>();
-        variables.put("test1","Test1");
-        variables.put("test2","Test2");
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("test1", "Test1");
+        variables.put("test2", "Test2");
         context.setVariables(variables);
 
         ExpressionParser parser = new SpelExpressionParser();
@@ -72,28 +72,28 @@ public class SpELTest extends BaseTest{
     }
 
     @Test
-    public void test2(){
-        Map<String,Object> variables = new HashMap<>();
-        variables.put("trueValue",true);
-        variables.put("falseValue",false);
+    public void test2() {
+        Map<String, Object> variables = new HashMap<>();
+        variables.put("trueValue", true);
+        variables.put("falseValue", false);
 
         String expStr = "@booleanExpressionExample.trueValue() == #trueValue";
         boolean result = spelEvaluator.getBooleanValue(expStr, variables);
-        Assert.assertEquals(true,result);
+        Assert.assertEquals(true, result);
 
         String expStr2 = "@booleanExpressionExample.falseValue() == #trueValue";
         boolean result2 = spelEvaluator.getBooleanValue(expStr2, variables);
-        Assert.assertEquals(false,result2);
+        Assert.assertEquals(false, result2);
 
         String expStr3 = "#falseValue";
-        boolean result3= spelEvaluator.getBooleanValue(expStr3, variables);
-        Assert.assertEquals(false,result3);
+        boolean result3 = spelEvaluator.getBooleanValue(expStr3, variables);
+        Assert.assertEquals(false, result3);
 
     }
 
     @Test
-    public void regexTest(){
-        String result = spelEvaluator.checkExpStr("${123aaa}");
-        Assert.assertEquals("123aaa",result);
+    public void regexTest() {
+        String result = spelEvaluator.getStringValue(" ${@booleanExpressionExample.trueValue() != @booleanExpressionExample.trueValue()}", new HashMap<>());
+        Assert.assertEquals("false", result);
     }
 }

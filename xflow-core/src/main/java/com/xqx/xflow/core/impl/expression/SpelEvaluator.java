@@ -12,7 +12,10 @@ import org.springframework.expression.Expression;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
+import javax.annotation.Nonnull;
+import javax.validation.constraints.NotNull;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -20,27 +23,48 @@ import java.util.regex.Pattern;
 @Component
 public class SpelEvaluator {
 
-    private static final Pattern expPattern =  Pattern.compile("^\\$\\{(.*)\\}$");
+    private static final Pattern expPattern = Pattern.compile("\\$\\{(.*)\\}");
 
     @Autowired
     private ApplicationContext applicationContext;
 
-    public String checkExpStr(String str){
-        Matcher matcher = expPattern.matcher(str);
-        if(matcher.find()){
+    public boolean isExpressionString(String input) {
+        input = trim(input);
+        Matcher matcher = expPattern.matcher(input);
+        if (matcher.matches()) {
+            return true;
+        }
+        return false;
+    }
+
+    private String getExpressionFromPattern(String expStr) {
+        expStr = trim(expStr);
+        Matcher matcher = expPattern.matcher(expStr);
+        if (matcher.find()) {
             return matcher.group(1);
         }
-        throw new XflowException("Not a valid Expression pattern.User ${...} for expresions.");
+        throw new XflowException("Not a valid Expression pattern.Use ${...} for expresions pattern.");
     }
 
-    public boolean getBooleanValue(String expStr, Map<String, Object> variables){
+    private Expression parseExpression(String expPattern) {
         SpelExpressionParser parser = new SpelExpressionParser();
-        Expression exp = parser.parseExpression(expStr);
-        EvaluationContext ctx = getEvaluateContext(variables);
-        return exp.getValue(ctx,Boolean.class);
+        Expression exp = parser.parseExpression(getExpressionFromPattern(expPattern));
+        return exp;
     }
 
-    private EvaluationContext getEvaluateContext(Map<String, Object> variables){
+    public boolean getBooleanValue(@Nonnull String expStr, @Nonnull Map<String, Object> variables) {
+        Expression exp = parseExpression(expStr);
+        EvaluationContext ctx = getEvaluateContext(variables);
+        return exp.getValue(ctx, Boolean.class);
+    }
+
+    public String getStringValue(@Nonnull String expStr, @Nonnull Map<String, Object> variables) {
+        Expression exp = parseExpression(expStr);
+        EvaluationContext ctx = getEvaluateContext(variables);
+        return exp.getValue(ctx, String.class);
+    }
+
+    private EvaluationContext getEvaluateContext(Map<String, Object> variables) {
         StandardEvaluationContext context = new StandardEvaluationContext();
         context.addPropertyAccessor(new BeanExpressionContextAccessor());
         context.addPropertyAccessor(new BeanFactoryAccessor());
@@ -48,6 +72,14 @@ public class SpelEvaluator {
         context.setBeanResolver(new BeanFactoryResolver(applicationContext));
         context.setVariables(variables);
         return context;
+    }
+
+    private String trim(String input) {
+        if (StringUtils.isEmpty(input)) {
+            return "";
+        }
+
+        return input.trim();
     }
 
 }
