@@ -19,7 +19,7 @@ public class StartNodeDef extends NodeDef{
     public void execute(Execution execution) {
         List<Transition> transitions = getTransitions();
         if(transitions.size() != 1){
-            throw new XflowException("START NODE transitions size must equals 1");
+            throw new XflowException("Start node must have only one transition.");
         }
         Transition transition = transitions.get(0);
         this.leave(execution,transition);

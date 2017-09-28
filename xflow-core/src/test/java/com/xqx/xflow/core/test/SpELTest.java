@@ -11,6 +11,7 @@ import org.springframework.context.expression.BeanExpressionContextAccessor;
 import org.springframework.context.expression.BeanFactoryAccessor;
 import org.springframework.context.expression.BeanFactoryResolver;
 import org.springframework.context.expression.MapAccessor;
+import org.springframework.expression.BeanResolver;
 import org.springframework.expression.Expression;
 import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
@@ -24,8 +25,6 @@ public class SpELTest extends BaseTest {
     @Autowired
     private ApplicationContext applicationContext;
 
-    @Autowired
-    private SpelEvaluator spelEvaluator;
 
     @Test
     public void booleanExpressionTest() {
@@ -73,27 +72,31 @@ public class SpELTest extends BaseTest {
 
     @Test
     public void test2() {
+        BeanResolver beanResolver = new BeanFactoryResolver(applicationContext);
+
         Map<String, Object> variables = new HashMap<>();
         variables.put("trueValue", true);
         variables.put("falseValue", false);
 
         String expStr = "@booleanExpressionExample.trueValue() == #trueValue";
-        boolean result = spelEvaluator.getBooleanValue(expStr, variables);
+        boolean result = SpelEvaluator.getBooleanValue(expStr, beanResolver,variables);
         Assert.assertEquals(true, result);
 
         String expStr2 = "@booleanExpressionExample.falseValue() == #trueValue";
-        boolean result2 = spelEvaluator.getBooleanValue(expStr2, variables);
+        boolean result2 = SpelEvaluator.getBooleanValue(expStr2, beanResolver, variables);
         Assert.assertEquals(false, result2);
 
         String expStr3 = "#falseValue";
-        boolean result3 = spelEvaluator.getBooleanValue(expStr3, variables);
+        boolean result3 = SpelEvaluator.getBooleanValue(expStr3, beanResolver, variables);
         Assert.assertEquals(false, result3);
 
     }
 
     @Test
     public void regexTest() {
-        String result = spelEvaluator.getStringValue(" ${@booleanExpressionExample.trueValue() != @booleanExpressionExample.trueValue()}", new HashMap<>());
+        BeanResolver beanResolver = new BeanFactoryResolver(applicationContext);
+
+        String result = SpelEvaluator.getStringValue(" #{@booleanExpressionExample.trueValue() != @booleanExpressionExample.trueValue()}",beanResolver, new HashMap<>());
         Assert.assertEquals("false", result);
     }
 }

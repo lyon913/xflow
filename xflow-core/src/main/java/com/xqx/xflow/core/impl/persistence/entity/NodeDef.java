@@ -55,6 +55,10 @@ public abstract class NodeDef extends BaseIdEntity{
         return transitions;
     }
 
+    public List<Transition> getValidTransitions(){
+        return null;
+    }
+
     public void setTransitions(List<Transition> transitions) {
         this.transitions = transitions;
     }
