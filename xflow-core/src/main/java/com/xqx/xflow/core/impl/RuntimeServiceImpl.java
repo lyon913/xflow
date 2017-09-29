@@ -11,6 +11,7 @@ import com.xqx.xflow.core.impl.persistence.querydsl.QXflProcInst;
 import org.joda.time.DateTime;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Lyon on 2017/2/15.
@@ -72,5 +73,10 @@ public class RuntimeServiceImpl extends ServiceImpl implements RuntimeService {
     public SQLQuery<XflProcInst> createProcessInstanceQuery() {
         QXflProcInst qXflProcInst = QXflProcInst.xflProcInst;
         return getDbContext().getQueryFactory().selectFrom(qXflProcInst);
+    }
+
+    @Override
+    public Map<String, Object> getVariables(String processInstId) {
+        return null;
     }
 }

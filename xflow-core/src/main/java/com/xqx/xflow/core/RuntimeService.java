@@ -16,8 +16,5 @@ public interface RuntimeService {
 
     SQLQuery<XflProcInst> createProcessInstanceQuery();
 
-    public Map<String, Object> getVariables(String processInstId) {
-
-        return variables;
-    }
+    Map<String, Object> getVariables(String processInstId);
 }
