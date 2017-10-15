@@ -33,16 +33,16 @@ public class UserTaskNodeDef extends NodeDef{
     private String dueDate;
 
     @Override
-    public void execute(Execution execution) {
+    public void execute(Token token) {
         //waiting for user commit task
     }
 
-    public void commit(Execution execution){
+    public void commit(Token token){
         List<Transition> transitions = getAvailableTransitions();
         if(transitions.size() != 1){
             throw new XflowException("Availible transition number must be 1.");
         }
-        leave(execution, transitions.get(0));
+        leave(token, transitions.get(0));
     }
 
     @Override

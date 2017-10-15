@@ -16,13 +16,13 @@ public class StartNodeDef extends NodeDef{
     private EntityManager em;
 
     @Override
-    public void execute(Execution execution) {
+    public void execute(Token token) {
         List<Transition> transitions = getTransitions();
         if(transitions.size() != 1){
             throw new XflowException("Start node must have only one transition.");
         }
         Transition transition = transitions.get(0);
-        this.leave(execution,transition);
+        this.leave(token,transition);
     }
 
     protected Activity createActivity(ProcessInst processInst){

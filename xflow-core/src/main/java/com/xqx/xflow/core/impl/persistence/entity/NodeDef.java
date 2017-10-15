@@ -1,6 +1,7 @@
 package com.xqx.xflow.core.impl.persistence.entity;
 
 
+import com.xqx.xflow.core.impl.context.ExecutionContext;
 import org.springframework.expression.EvaluationContext;
 import org.springframework.expression.Expression;
 import org.springframework.expression.ExpressionParser;
@@ -63,16 +64,18 @@ public abstract class NodeDef extends BaseIdEntity{
         this.transitions = transitions;
     }
 
-    public void enter(Execution execution){
-        Activity act = createActivity(execution.getProcessInst());
-        execution.setActivity(act);
-        em.merge(execution);
+    public void enter(Token token){
+        Activity act = createActivity(token.getProcessInst());
+        token.setActivity(act);
+        em.merge(token);
 
-        execute(execution);
+        execute(token);
     }
-    public void leave(Execution execution, Transition transition){
-        execution.getActivity().end();
-        transition.take(execution);
+    public void leave(ExecutionContext context, Transition transition){
+        token.getActivity().end();
+        token.setActivity(null);
+        em.merge(token);
+        transition.take(token);
     }
 
     public List<Transition> getAvailableTransitions(){
@@ -91,7 +94,7 @@ public abstract class NodeDef extends BaseIdEntity{
 
     }
 
-    protected abstract void execute(Execution execution);
+    protected abstract void execute(Token token);
 
     protected abstract Activity createActivity(ProcessInst processInst);
 

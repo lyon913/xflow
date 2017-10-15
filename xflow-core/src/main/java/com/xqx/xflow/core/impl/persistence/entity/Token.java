@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "XFL_EXECUTION")
-public class Execution extends BaseIdEntity {
+public class Token extends BaseIdEntity {
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "PROCESS_INST_ID_")
@@ -17,10 +17,10 @@ public class Execution extends BaseIdEntity {
 
     @ManyToOne
     @JoinColumn(name = "PARENT_ID_")
-    private Execution parent;
+    private Token parent;
 
     @OneToMany(mappedBy = "parent")
-    private List<Execution> children;
+    private List<Token> children;
 
     @Column(name = "IS_ACTIVE_",length = 1,nullable = false)
     private Boolean isActive;
@@ -41,19 +41,19 @@ public class Execution extends BaseIdEntity {
         this.activity = activity;
     }
 
-    public Execution getParent() {
+    public Token getParent() {
         return parent;
     }
 
-    public void setParent(Execution parent) {
+    public void setParent(Token parent) {
         this.parent = parent;
     }
 
-    public List<Execution> getChildren() {
+    public List<Token> getChildren() {
         return children;
     }
 
-    public void setChildren(List<Execution> children) {
+    public void setChildren(List<Token> children) {
         this.children = children;
     }
 

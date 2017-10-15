@@ -20,8 +20,8 @@ public class Transition extends BaseIdEntity {
     @Column(name = "CONDITION_EXPRESSION_", length = 500)
     private String conditionExpression;
 
-    public void take(Execution execution){
-        targetNode.enter(execution);
+    public void take(Token token){
+        targetNode.enter(token);
     }
 
     public String getName() {
